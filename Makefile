@@ -4,7 +4,7 @@ AS = aarch64-none-elf-as
 G++ = aarch64-none-elf-g++
 QEMU = qemu-system-aarch64
 
-G++_FLAGS = -ffreestanding -I./include -nostdlib -T link.ld
+G++_FLAGS = -ffreestanding -I./include -nostdlib -T ./linker/link.ld
 QEMU_FLAGS = -machine virt -cpu cortex-a57 -kernel $(OUTPUT) -nographic
 
 ifeq ($(OS), Windows_NT)
