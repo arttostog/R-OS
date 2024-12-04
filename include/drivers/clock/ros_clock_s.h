@@ -1,7 +1,7 @@
-#ifndef ROS_CLOCK_S_HPP
-#define ROS_CLOCK_S_HPP
+#ifndef ROS_CLOCK_S_H
+#define ROS_CLOCK_S_H
 
-#include <ros_standart.hpp>
+#include <ros_standart.h>
 
 extern "C" {
     uint32_t clock_frequency(void);

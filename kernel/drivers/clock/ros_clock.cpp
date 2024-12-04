@@ -1,4 +1,4 @@
-#include <./drivers/clock/ros_clock.hpp>
+#include <./drivers/clock/ros_clock.h>
 
 ROS::Clock::Clock(void) {
     clockFrequency = clock_frequency();

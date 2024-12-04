@@ -1,5 +1,5 @@
-#ifndef ROS_STANDART_HPP
-#define ROS_STANDART_HPP
+#ifndef ROS_STANDART_H
+#define ROS_STANDART_H
 
 #define IN
 #define OUT

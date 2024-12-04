@@ -1,7 +1,7 @@
-#ifndef ROS_OUTPUT_HPP
-#define ROS_OUTPUT_HPP
+#ifndef ROS_OUTPUT_H
+#define ROS_OUTPUT_H
 
-#include <ros_standart.hpp>
+#include <ros_standart.h>
 
 #define UART0 ((byte_t*) 0x09000000)
 

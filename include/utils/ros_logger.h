@@ -1,9 +1,9 @@
-#ifndef ROS_LOGGER_HPP
-#define ROS_LOGGER_HPP
+#ifndef ROS_LOGGER_H
+#define ROS_LOGGER_H
 
-#include <ros_standart.hpp>
-#include <ros_output.hpp>
-#include <./utils/ros_string.hpp>
+#include <ros_standart.h>
+#include <ros_output.h>
+#include <./utils/ros_string.h>
 
 namespace ROS {
     class Logger

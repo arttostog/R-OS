@@ -1,9 +1,9 @@
-#ifndef ROS_CLOCK_HPP
-#define ROS_CLOCK_HPP
+#ifndef ROS_CLOCK_H
+#define ROS_CLOCK_H
 
-#include <ros_standart.hpp>
-#include <./drivers/clock/ros_clock_s.hpp>
-#include <./utils/ros_logger.hpp>
+#include <ros_standart.h>
+#include <./drivers/clock/ros_clock_s.h>
+#include <./utils/ros_logger.h>
 
 #define MHZ 1000000
 #define NANOSECONDS_IN_SECOND 1000000000

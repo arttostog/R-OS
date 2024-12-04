@@ -1,7 +1,7 @@
-#ifndef ROS_CONVERTER_HPP
-#define ROS_CONVERTER_HPP
+#ifndef ROS_CONVERTER_H
+#define ROS_CONVERTER_H
 
-#include <ros_standart.hpp>
+#include <ros_standart.h>
 
 namespace ROS {
     class String {

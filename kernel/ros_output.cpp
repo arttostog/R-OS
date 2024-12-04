@@ -1,4 +1,4 @@
-#include <ros_output.hpp>
+#include <ros_output.h>
 
 using ROS::Output;
 

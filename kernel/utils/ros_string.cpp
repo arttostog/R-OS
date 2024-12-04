@@ -1,4 +1,4 @@
-#include <./utils/ros_string.hpp>
+#include <./utils/ros_string.h>
 
 using ROS::String;
 

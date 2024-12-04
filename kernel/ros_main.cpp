@@ -1,8 +1,8 @@
-#include <ros_output.hpp>
-#include <./utils/ros_logger.hpp>
-#include <ros_system.hpp>
-#include <./drivers/clock/ros_clock.hpp>
-#include <./utils/ros_string.hpp>
+#include <ros_output.h>
+#include <./utils/ros_logger.h>
+#include <ros_system.h>
+#include <./drivers/clock/ros_clock.h>
+#include <./utils/ros_string.h>
 
 using ROS::Clock, ROS::Logger, ROS::String;
 
