@@ -2,8 +2,7 @@
 #define ROS_OUTPUT_H
 
 #include <ros_standart.h>
-
-#define UART0 ((byte_t*) 0x09000000)
+#include <./uart0/ros_uart0.h>
 
 namespace ROS {
     class Output {

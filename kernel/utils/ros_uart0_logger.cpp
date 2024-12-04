@@ -1,6 +1,14 @@
-#include <./utils/ros_logger.h>
+#include <./utils/ros_uart0_logger.h>
 
-using ROS::Logger, ROS::Output, ROS::String;
+using ROS::Logger, ROS::Output, ROS::String, ROS::Clock;
+
+Logger::Logger() {
+    this->clock = nullptr;
+}
+
+Logger::Logger(IN Clock* clock) {
+    this->clock = clock;
+}
 
 void Logger::log(IN LogType logType, IN const char* string) {
     logStart(logType);
@@ -15,6 +23,14 @@ void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSi
 }
 
 void Logger::logStart(IN LogType logType) {
+    if (clock != nullptr) {
+        Output::putByte('(');
+        char buffer[20];
+        String::numberToString(clock->getUptime(), buffer, 20, true);
+        Output::putBytes(buffer, 20);
+        Output::putBytes(") ", 2);
+    }
+
     Output::putByte('[');
     const char* convertedLogType = convertLogTypeToString(logType);
     Output::putBytes(convertedLogType, String::getStringSize(convertedLogType));

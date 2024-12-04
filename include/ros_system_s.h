@@ -3,6 +3,6 @@
 
 #include <ros_standart.h>
 
-extern "C" void shutdown(void);
+extern "C" void shutdown();
 
 #endif

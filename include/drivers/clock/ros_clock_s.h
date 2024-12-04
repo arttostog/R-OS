@@ -4,8 +4,8 @@
 #include <ros_standart.h>
 
 extern "C" {
-    uint32_t clock_frequency(void);
-    uint64_t clock_uptime(void);
+    uint32_t clock_frequency();
+    uint64_t clock_uptime();
 }
 
 #endif

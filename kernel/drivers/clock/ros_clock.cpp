@@ -1,16 +1,18 @@
 #include <./drivers/clock/ros_clock.h>
 
-ROS::Clock::Clock(void) {
+using ROS::Clock, ROS::Output;
+
+Clock::Clock() {
     clockFrequency = clock_frequency();
 
     if (clockFrequency < 1 * MHZ || clockFrequency > 500 * MHZ)
-        ROS::Logger::log(ROS::Logger::ERROR, "Readed invalid clock frequency!");
+        Output::putBytes("Readed invalid clock frequency!", 31);
 }
 
-uint32_t ROS::Clock::getFrequency(void) {
+uint32_t Clock::getFrequency() {
     return clockFrequency;
 }
 
-uint64_t ROS::Clock::getUptime(void) {
+uint64_t Clock::getUptime() {
     return (clock_uptime() * NANOSECONDS_IN_SECOND) / clockFrequency;
 }
