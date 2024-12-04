@@ -1,3 +1,1 @@
-.vscode
-*.o
-R-OS.elf
+/build/
