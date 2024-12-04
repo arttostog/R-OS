@@ -1,8 +1,8 @@
-#ifndef ROS_LOGGER_H
-#define ROS_LOGGER_H
+#ifndef ROS_UART_LOGGER_H
+#define ROS_UART_LOGGER_H
 
 #include <ros_standart.h>
-#include <./uart0/ros_uart0_output.h>
+#include <./uart/ros_uart_output.h>
 #include <./utils/ros_string.h>
 #include <./drivers/clock/ros_clock.h>
 

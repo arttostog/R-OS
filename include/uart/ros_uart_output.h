@@ -1,8 +1,8 @@
-#ifndef ROS_OUTPUT_H
-#define ROS_OUTPUT_H
+#ifndef ROS_UART_OUTPUT_H
+#define ROS_UART_OUTPUT_H
 
 #include <ros_standart.h>
-#include <./uart0/ros_uart0.h>
+#include <./uart/ros_uart.h>
 
 namespace ROS {
     class Output {

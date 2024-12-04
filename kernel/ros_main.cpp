@@ -1,9 +1,9 @@
-#include <./utils/ros_uart0_logger.h>
+#include <./utils/ros_uart_logger.h>
 #include <ros_system_s.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./utils/ros_string.h>
-#include <./uart0/ros_uart0_input.h>
-#include <./uart0/ros_uart0_output.h>
+#include <./uart/ros_uart_input.h>
+#include <./uart/ros_uart_output.h>
 
 using namespace ROS;
 

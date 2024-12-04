@@ -1,4 +1,4 @@
-#include <./uart0/ros_uart0_input.h>
+#include <./uart/ros_uart_input.h>
 
 using ROS::Input;
 

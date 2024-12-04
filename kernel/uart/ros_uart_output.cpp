@@ -1,4 +1,4 @@
-#include <./uart0/ros_uart0_output.h>
+#include <./uart/ros_uart_output.h>
 
 using ROS::Output;
 

@@ -1,8 +1,8 @@
-#ifndef ROS_UART0_INPUT_H
-#define ROS_UART0_INPUT_H
+#ifndef ROS_UART_INPUT_H
+#define ROS_UART_INPUT_H
 
 #include <ros_standart.h>
-#include <./uart0/ros_uart0.h>
+#include <./uart/ros_uart.h>
 
 namespace ROS {
     class Input {
