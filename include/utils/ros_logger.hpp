@@ -3,6 +3,7 @@
 
 #include <ros_standart.hpp>
 #include <ros_output.hpp>
+#include <./utils/ros_string.hpp>
 
 namespace ROS {
     class Logger
@@ -13,9 +14,11 @@ namespace ROS {
                 WARN,
                 ERROR
             } LogType;
-            static void log(IN LogType type, IN const char* message);
+            static void log(IN LogType logType, IN const char* string);
+            static void log(IN LogType logType, IN const char* string, IN uint32_t stringSize);
         private:
-            static const char* convertLogTypeToString(IN LogType type);
+            static void logStart(IN LogType logType);
+            static const char* convertLogTypeToString(IN LogType logType);
     };
 };
 

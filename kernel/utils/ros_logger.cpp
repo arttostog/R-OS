@@ -1,15 +1,28 @@
 #include <./utils/ros_logger.hpp>
 
-void ROS::Logger::log(IN LogType type, IN const char* message) {
-    ROS::Output::putByte('[');
-    ROS::Output::putBytes(convertLogTypeToString(type));
-    ROS::Output::putBytes("] : ");
-    ROS::Output::putBytes(message);
-    ROS::Output::putByte('\n');
+using ROS::Logger, ROS::Output, ROS::String;
+
+void Logger::log(IN LogType logType, IN const char* string) {
+    logStart(logType);
+    Output::putBytes(string, ROS::String::getStringSize(string));
+    Output::putByte('\n');
 }
 
-const char* ROS::Logger::convertLogTypeToString(IN LogType type) {
-    switch (type)
+void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSize) {
+    logStart(logType);
+    Output::putBytes(string, stringSize);
+    Output::putByte('\n');
+}
+
+void Logger::logStart(IN LogType logType) {
+    Output::putByte('[');
+    const char* convertedLogType = convertLogTypeToString(logType);
+    Output::putBytes(convertedLogType, String::getStringSize(convertedLogType));
+    Output::putBytes("] : ", 4);
+}
+
+const char* Logger::convertLogTypeToString(IN LogType logType) {
+    switch (logType)
     {
         case INFO:
             return "INFO";

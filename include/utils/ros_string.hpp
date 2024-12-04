@@ -4,9 +4,10 @@
 #include <ros_standart.hpp>
 
 namespace ROS {
-    class Converter {
+    class String {
     public:
         static void numberToString(IN uint64_t number, OUT char* buffer, IN int32_t bufferSize);
+        static uint32_t getStringSize(IN const char* string);
     };
 }
 
