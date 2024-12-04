@@ -1,6 +1,7 @@
 #ifndef ROS_UART0_H
 #define ROS_UART0_H
 
-#define UART0 ((byte_t*) 0x09000000)
+#define UARTDR *((byte_t*) 0x09000000)
+#define UARTRFR *((byte_t*) 0x09000018)
 
 #endif
