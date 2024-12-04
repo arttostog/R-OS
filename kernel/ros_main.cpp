@@ -60,6 +60,7 @@ extern "C" {
         clock = Clock();
         logger = Logger(&clock);
 
+        logger.log(Logger::INFO, ((const char*) 0x00100000));
         logger.log(Logger::INFO, "Hello World!");
 
         logger.log(Logger::INFO, "Test 1");
