@@ -1,6 +1,6 @@
 #include <ros_output.h>
 #include <./utils/ros_logger.h>
-#include <ros_system.h>
+#include <ros_system_s.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./utils/ros_string.h>
 
