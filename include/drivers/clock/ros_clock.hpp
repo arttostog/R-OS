@@ -2,7 +2,7 @@
 #define ROS_CLOCK_HPP
 
 #include <ros_standart.hpp>
-#include <ros_system.hpp>
+#include <./drivers/clock/ros_clock_s.hpp>
 #include <./utils/ros_logger.hpp>
 
 #define MHZ 1000000

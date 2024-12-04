@@ -3,10 +3,6 @@
 
 #include <ros_standart.hpp>
 
-extern "C" {
-    uint32_t clock_frequency(void);
-    uint64_t clock_uptime(void);
-    void shutdown(void);
-}
+extern "C" void shutdown(void);
 
 #endif
