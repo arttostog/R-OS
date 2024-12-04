@@ -7,10 +7,10 @@ ROS::Clock::Clock(void) {
         ROS::Logger::log(ROS::Logger::ERROR, "Readed invalid clock frequency!");
 }
 
-u32_t ROS::Clock::getFrequency(void) {
+uint32_t ROS::Clock::getFrequency(void) {
     return clockFrequency;
 }
 
-u64_t ROS::Clock::getUptime(void) {
+uint64_t ROS::Clock::getUptime(void) {
     return (clock_uptime() * NANOSECONDS_IN_SECOND) / clockFrequency;
 }

@@ -12,10 +12,10 @@ namespace ROS {
     class Clock {
         public:
             Clock(void);
-            u32_t getFrequency(void);
-            u64_t getUptime(void);
+            uint32_t getFrequency(void);
+            uint64_t getUptime(void);
         private:
-            u64_t clockFrequency;
+            uint64_t clockFrequency;
     };
 };
 
