@@ -17,10 +17,10 @@ extern "C" {
 
     void kernel_loop(void) {
         char buffer[20];
-        String::numberToString(clock.getUptime(), buffer, 20);
+        String::numberToString(clock.getUptime(), buffer, 20, true);
         Logger::log(Logger::INFO, buffer, 20);
 
-        if (++loopCounter == 10)
+        if (++loopCounter == 15)
             shutdown();
     }
 }
