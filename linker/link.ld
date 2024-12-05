@@ -1,7 +1,7 @@
 ENTRY(_start)
 SECTIONS
 {
-    . = 0x40000000;
+    . = 0x80000;
     .text : { *(.text.boot) *(.text) }
     . = ALIGN(2048);
     .data : { *(.data) }

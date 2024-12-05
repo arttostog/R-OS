@@ -59,9 +59,8 @@ extern "C" {
     void kernel_main() {
         clock = Clock();
         logger = Logger(&clock);
-        
-        logger.log(Logger::INFO, "Hello World!");
 
+        logger.log(Logger::INFO, "Hello World!");
         logger.log(Logger::INFO, "Test 1");
         logger.log(Logger::WARN, "Test 2");
         logger.log(Logger::ERROR, "Test 3");

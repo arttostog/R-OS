@@ -3,9 +3,9 @@
 using ROS::Output;
 
 void Output::putByte(IN byte_t byte) {
-    while (UARTRFR & 0x20)
+    while (Uart::read(UART0_FR) & (1 << 5))
         continue;
-    UARTDR = byte;
+    Uart::write(UART0_DR, byte);
 }
 
 void Output::putBytes(IN const byte_t* bytes, IN uint32_t bytesCount) {
