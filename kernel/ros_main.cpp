@@ -41,7 +41,7 @@ bool equal(const byte_t* firstBuffer, const byte_t* secondBuffer, int32_t buffer
 }
 
 void commandHandler(const byte_t* buffer, int32_t bufferSize) {
-    for (int32_t i = 0, nameLength; i < COMMANDS_COUNT; ++i)
+    for (int32_t i = 0; i < COMMANDS_COUNT; ++i)
         if (bufferSize == commands[i].nameLength)
             if (equal(buffer, commands[i].name, bufferSize)) {
                 commands[i].commandFunction();
@@ -59,7 +59,7 @@ extern "C" {
     void kernel_main() {
         clock = Clock();
         logger = Logger(&clock);
-
+        
         logger.log(Logger::INFO, "Hello World!");
 
         logger.log(Logger::INFO, "Test 1");
