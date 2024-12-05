@@ -1,9 +1,9 @@
 #include <./uart/ros_uart_input.h>
 
-using ROS::Input;
+using namespace ROS;
 
 byte_t Input::getByte() {
-    while (UARTRFR & 0x10)
+    while (Uart::read(UART0_FR) & (1 << 4))
         continue;
-    return UARTDR;
+    return Uart::read(UART0_DR);
 }

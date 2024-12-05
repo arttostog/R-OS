@@ -5,6 +5,7 @@
 #include <./uart/ros_uart_output.h>
 #include <./utils/ros_string.h>
 #include <./drivers/clock/ros_clock.h>
+#include <./boot/ros_boot.h>
 
 namespace ROS {
     class Logger
@@ -24,7 +25,7 @@ namespace ROS {
             void log(IN LogType logType, IN const char* string);
             void log(IN LogType logType, IN const char* string, IN uint32_t stringSize);
         private:
-            void logStart(IN LogType logType);
+            bool isLogging;
             const char* convertLogTypeToString(IN LogType logType);
     };
 };

@@ -1,9 +1,10 @@
 #include <./utils/ros_uart_logger.h>
-#include <ros_system_s.h>
+#include <ros_power.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./utils/ros_string.h>
 #include <./uart/ros_uart_input.h>
 #include <./uart/ros_uart_output.h>
+#include <./task-manager/ros_task_manager.h>
 
 using namespace ROS;
 
@@ -55,12 +56,20 @@ void clearInputBuffer(byte_t* inputBuffer, int32_t* inputBufferLength) {
     *inputBufferLength = 0;
 }
 
+void testTask() {
+    logger.log(Logger::INFO, "Testificate");
+}
+
 extern "C" {
     void kernel_main() {
         clock = Clock();
         logger = Logger(&clock);
-        
+
         logger.log(Logger::INFO, "Hello World!");
+
+        tasks[0] = testTask;
+        // tasks[1] = testTask;
+        // tasks[2] = testTask;
 
         logger.log(Logger::INFO, "Test 1");
         logger.log(Logger::WARN, "Test 2");

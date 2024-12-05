@@ -1,12 +1,19 @@
 ENTRY(_start)
 SECTIONS
 {
-    . = 0x40000000;
-    .text : { *(.text.boot) *(.text) }
-    . = ALIGN(2048);
+    . = 0x80000;
+    .text : { *(.boot) *(.text) }
     .data : { *(.data) }
-    . = ALIGN(2048);
+    . = ALIGN(16);
     .bss : { *(.bss) }
-    . = ALIGN(2048);
-    stack_top = .;
+
+    __first_core_stack = .;
+    . += 1024;
+    __second_core_stack = .;
+    . += 1024;
+    __third_core_stack = .;
+    . += 1024;
+    __fourth_core_stack = .;
+    . += 1024;
+    __end = .;
 }
