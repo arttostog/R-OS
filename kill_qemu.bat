@@ -1,0 +1,1 @@
+taskkill /F /IM qemu-system-aarch64.exe
