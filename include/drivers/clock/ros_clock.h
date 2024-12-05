@@ -3,7 +3,7 @@
 
 #include <ros_standart.h>
 #include <./drivers/clock/ros_clock_s.h>
-#include <./drivers/uart/ros_uart_output.h>
+#include <./utils/ros_uart_logger.h>
 
 #define MHZ 1000000
 #define NANOSECONDS_IN_SECOND 1000000000

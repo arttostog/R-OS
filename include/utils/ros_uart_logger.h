@@ -17,16 +17,13 @@ namespace ROS {
                 ERROR
             } LogType;
 
-            ROS::Clock* clock;
-            
-            Logger();
-            Logger(IN ROS::Clock* clock);
+            static void* clock;
 
-            void log(IN LogType logType, IN const char* string);
-            void log(IN LogType logType, IN const char* string, IN uint32_t stringSize);
+            static void log(IN LogType logType, IN const char* string);
+            static void log(IN LogType logType, IN const char* string, IN uint32_t stringSize);
         private:
-            bool isLogging;
-            const char* convertLogTypeToString(IN LogType logType);
+            static bool isLogging;
+            static const char* convertLogTypeToString(IN LogType logType);
     };
 };
 

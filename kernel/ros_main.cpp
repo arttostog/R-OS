@@ -7,9 +7,6 @@
 
 using namespace ROS;
 
-Clock clock;
-Logger logger;
-
 #define INPUT_BUFFER_SIZE 64
 
 byte_t inputBuffer[INPUT_BUFFER_SIZE];
@@ -23,7 +20,7 @@ struct Command
 };
 
 void helloCommand() {
-    logger.log(Logger::INFO, "Hello!");
+    Logger::log(Logger::INFO, "Hello!");
 }
 
 #define COMMANDS_COUNT 2
@@ -56,24 +53,24 @@ void clearInputBuffer(byte_t* inputBuffer, int32_t* inputBufferLength) {
 }
 
 void testTask() {
-    logger.log(Logger::INFO, "Testificate");
+    Logger::log(Logger::INFO, "Testificate");
 }
+
+Clock clock;
 
 extern "C" {
     void kernel_main() {
         clock = Clock();
-        logger = Logger(&clock);
+        Logger::clock = &clock;
 
-        logger.log(Logger::INFO, "Hello World!");
+        Logger::log(Logger::INFO, "Hello World!");
 
-        tasks[0] = testTask;
-        //tasks[1] = testTask;
-        // tasks[2] = testTask;
+        TaskManager::addTask(testTask);
 
-        logger.log(Logger::INFO, "Test 1");
-        logger.log(Logger::WARN, "Test 2");
-        logger.log(Logger::ERROR, "Test 3");
-        logger.log((Logger::LogType) 3, "Test 4");
+        Logger::log(Logger::INFO, "Test 1");
+        Logger::log(Logger::WARN, "Test 2");
+        Logger::log(Logger::ERROR, "Test 3");
+        Logger::log((Logger::LogType) 3, "Test 4");
         Output::putBytes("> ", 2);
     }
 
