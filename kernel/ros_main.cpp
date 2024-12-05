@@ -66,9 +66,7 @@ extern "C" {
 
         logger.log(Logger::INFO, "Hello World!");
 
-        tasks[0] = testTask;
-        //tasks[1] = testTask;
-        // tasks[2] = testTask;
+        TaskManager::addTask(testTask);
 
         logger.log(Logger::INFO, "Test 1");
         logger.log(Logger::WARN, "Test 2");
