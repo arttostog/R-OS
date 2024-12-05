@@ -2,15 +2,8 @@
 
 using namespace ROS;
 
-Logger::Logger() {
-    this->clock = nullptr;
-    isLogging = false;
-}
-
-Logger::Logger(IN Clock* clock) {
-    this->clock = clock;
-    isLogging = false;
-}
+void* Logger::clock = nullptr;
+bool Logger::isLogging = false;
 
 void Logger::log(IN LogType logType, IN const char* string) {
     log(logType, string, String::getStringSize(string));
@@ -25,7 +18,7 @@ void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSi
     if (clock != nullptr) {
         Output::putByte('(');
         char buffer[20];
-        String::numberToString(clock->getUptime(), buffer, 20, true);
+        String::numberToString(((Clock*) clock)->getUptime(), buffer, 20, true);
         Output::putBytes(buffer, 20);
         Output::putBytes(") ", 2);
     }

@@ -9,7 +9,7 @@ AS = aarch64-none-elf-as
 
 G++ = aarch64-none-elf-g++
 PATH_TO_LINKER = ./linker/link.ld
-G++_FLAGS = -Wall -Wextra -ffreestanding -I$(INCLUDE_DIRECTORY) -nostdlib -T $(PATH_TO_LINKER)
+G++_FLAGS = -Wall -Wextra -ffreestanding -static -I$(INCLUDE_DIRECTORY) -nostdlib -T $(PATH_TO_LINKER)
 
 rwildcard = $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
