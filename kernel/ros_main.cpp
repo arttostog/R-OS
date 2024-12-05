@@ -1,10 +1,9 @@
 #include <./utils/ros_uart_logger.h>
-#include <ros_power.h>
+#include <./drivers/power/ros_power.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./utils/ros_string.h>
-#include <./uart/ros_uart_input.h>
-#include <./uart/ros_uart_output.h>
-#include <./task-manager/ros_task_manager.h>
+#include <./drivers/uart/ros_uart_input.h>
+#include <./drivers/task-manager/ros_task_manager.h>
 
 using namespace ROS;
 
@@ -31,7 +30,7 @@ void helloCommand() {
 
 struct Command commands[COMMANDS_COUNT] = {
     { "hello", 5, helloCommand},
-    { "shutdown", 8, shutdown }
+    { "shutdown", 8, Power::shutdown }
 };
 
 bool equal(const byte_t* firstBuffer, const byte_t* secondBuffer, int32_t buffersSize) {
@@ -68,7 +67,7 @@ extern "C" {
         logger.log(Logger::INFO, "Hello World!");
 
         tasks[0] = testTask;
-        // tasks[1] = testTask;
+        //tasks[1] = testTask;
         // tasks[2] = testTask;
 
         logger.log(Logger::INFO, "Test 1");
