@@ -1,6 +1,6 @@
 #include <./uart/ros_uart_output.h>
 
-using ROS::Output;
+using namespace ROS;
 
 void Output::putByte(IN byte_t byte) {
     while (Uart::read(UART0_FR) & (1 << 5))

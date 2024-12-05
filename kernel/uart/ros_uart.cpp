@@ -1,11 +1,11 @@
 #include <./uart/ros_uart.h>
 
-using ROS::Uart;
+using namespace ROS;
 
-byte_t Uart::read(IN byte_t* address){
-    return *(MMIO_BASE + address);
+uint32_t Uart::read(IN uint64_t address){
+    return *(volatile uint32_t*) (MMIO_BASE + address);
 }
 
-void Uart::write(IN byte_t* address, IN byte_t data) {
-    *(MMIO_BASE + address) = data;
+void Uart::write(IN uint64_t address, IN uint32_t data) {
+    *(volatile uint32_t*) (MMIO_BASE + address) = data;
 }

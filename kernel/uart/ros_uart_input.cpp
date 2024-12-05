@@ -1,6 +1,6 @@
 #include <./uart/ros_uart_input.h>
 
-using ROS::Input;
+using namespace ROS;
 
 byte_t Input::getByte() {
     while (Uart::read(UART0_FR) & (1 << 4))

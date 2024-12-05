@@ -1,28 +1,27 @@
 #include <./utils/ros_uart_logger.h>
 
-using ROS::Logger, ROS::Output, ROS::String, ROS::Clock;
+using namespace ROS;
 
 Logger::Logger() {
     this->clock = nullptr;
+    isLogging = false;
 }
 
 Logger::Logger(IN Clock* clock) {
     this->clock = clock;
+    isLogging = false;
 }
 
 void Logger::log(IN LogType logType, IN const char* string) {
-    logStart(logType);
-    Output::putBytes(string, ROS::String::getStringSize(string));
-    Output::putByte('\n');
+    log(logType, string, String::getStringSize(string));
 }
 
 void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSize) {
-    logStart(logType);
-    Output::putBytes(string, stringSize);
-    Output::putByte('\n');
-}
+    while (isLogging)
+        continue;
 
-void Logger::logStart(IN LogType logType) {
+    isLogging = true;
+
     if (clock != nullptr) {
         Output::putByte('(');
         char buffer[20];
@@ -31,10 +30,21 @@ void Logger::logStart(IN LogType logType) {
         Output::putBytes(") ", 2);
     }
 
+    Output::putBytes("{core-", 6);
+    char buffer[2];
+    String::numberToString(get_current_core(), buffer, 2, true);
+    Output::putBytes(buffer, 2);
+    Output::putBytes("} ", 2);
+
     Output::putByte('[');
     const char* convertedLogType = convertLogTypeToString(logType);
     Output::putBytes(convertedLogType, String::getStringSize(convertedLogType));
     Output::putBytes("] : ", 4);
+
+    Output::putBytes(string, stringSize);
+    Output::putByte('\n');
+
+    isLogging = false;
 }
 
 const char* Logger::convertLogTypeToString(IN LogType logType) {

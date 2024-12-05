@@ -1,6 +1,6 @@
 #include <./drivers/clock/ros_clock.h>
 
-using ROS::Clock, ROS::Output;
+using namespace ROS;
 
 Clock::Clock() {
     clockFrequency = clock_frequency();
