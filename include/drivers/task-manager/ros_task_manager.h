@@ -2,7 +2,7 @@
 #define ROS_TASK_MANAGER_H
 
 #include <ros_standart.h>
-#include <./uart/ros_uart_output.h>
+#include <./drivers/uart/ros_uart_output.h>
 #include <./utils/ros_string.h>
 
 #define CORES_FOR_TASKS 3

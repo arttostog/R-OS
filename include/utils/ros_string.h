@@ -1,5 +1,5 @@
-#ifndef ROS_CONVERTER_H
-#define ROS_CONVERTER_H
+#ifndef ROS_STRING_H
+#define ROS_STRING_H
 
 #include <ros_standart.h>
 
