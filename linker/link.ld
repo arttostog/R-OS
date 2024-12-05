@@ -1,11 +1,8 @@
 ENTRY(_start)
 SECTIONS
 {
-    flash_data 0x00100000 : { ./build/objects/flash.o }
-
     . = 0x40000000;
-    .startup . : { ./build/objects/ros_boot.o(.text) }
-    .text : { *(.text) }
+    .text : { *(.text.boot) *(.text) }
     . = ALIGN(2048);
     .data : { *(.data) }
     . = ALIGN(2048);

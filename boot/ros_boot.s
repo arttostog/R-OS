@@ -1,4 +1,7 @@
+.section ".text.boot"
+
 .global _start
+
 .extern stack_top
 .extern kernel_main
 .extern kernel_loop
