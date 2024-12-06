@@ -7,3 +7,7 @@ void Power::shutdown() {
         tasks[i] = halt;
     halt();
 }
+
+void Power::softReset() {
+    _start();
+}
