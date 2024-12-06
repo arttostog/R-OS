@@ -8,6 +8,6 @@ void Power::shutdown() {
     halt();
 }
 
-void Power::softReboot() {
+void Power::softReset() {
     _start();
 }

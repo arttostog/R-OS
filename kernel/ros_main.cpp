@@ -28,7 +28,7 @@ void helloCommand() {
 struct Command commands[COMMANDS_COUNT] = {
     { "hello", 5, helloCommand},
     { "shutdown", 8, Power::shutdown },
-    { "reboot", 6, Power::softReboot }
+    { "reboot", 6, Power::softReset }
 };
 
 bool equal(const byte_t* firstBuffer, const byte_t* secondBuffer, int32_t buffersSize) {

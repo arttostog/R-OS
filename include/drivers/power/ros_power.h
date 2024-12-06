@@ -9,7 +9,7 @@ namespace ROS {
     class Power {
     public:
         static void shutdown();
-        static void softReboot();
+        static void softReset();
     };
 }
 
