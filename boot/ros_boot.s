@@ -1,4 +1,4 @@
-.section ".boot"
+.section ".text.boot"
 
 .global _start
 .global get_current_core
