@@ -23,11 +23,12 @@ void helloCommand() {
     Logger::log(Logger::INFO, "Hello!");
 }
 
-#define COMMANDS_COUNT 2
+#define COMMANDS_COUNT 3
 
 struct Command commands[COMMANDS_COUNT] = {
     { "hello", 5, helloCommand},
-    { "shutdown", 8, Power::shutdown }
+    { "shutdown", 8, Power::shutdown },
+    { "reboot", 6, Power::softReboot }
 };
 
 bool equal(const byte_t* firstBuffer, const byte_t* secondBuffer, int32_t buffersSize) {
