@@ -1,7 +1,7 @@
 #include <./utils/ros_uart_logger.h>
 #include <./drivers/power/ros_power.h>
 #include <./drivers/clock/ros_clock.h>
-#include <./utils/ros_string.h>
+#include <./utils/string/ros_string.h>
 #include <./drivers/uart/ros_uart_input.h>
 #include <./drivers/task-manager/ros_task_manager.h>
 #include <./drivers/mailbox/ros_mailbox.h>

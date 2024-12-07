@@ -3,7 +3,8 @@
 
 #include <ros_standart.h>
 #include <./drivers/uart/ros_uart_output.h>
-#include <./utils/ros_string.h>
+#include <./utils/string/ros_string.h>
+#include <./utils/string/ros_string_builder.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./boot/ros_boot.h>
 

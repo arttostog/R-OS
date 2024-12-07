@@ -15,27 +15,31 @@ void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSi
 
     isLogging = true;
 
+    StringBuilder builder;
+
     if (clock != nullptr) {
-        Output::putByte('(');
+        builder.append('(');
         char buffer[20];
         String::numberToString(((Clock*) clock)->getUptime(), buffer, 20, true);
-        Output::putBytes(buffer, 20);
-        Output::putBytes(") ", 2);
+        builder.append(buffer, 20);
+        builder.append(") ", 2);
     }
 
-    Output::putBytes("{core-", 6);
+    builder.append("{core-", 6);
     char buffer[2];
     String::numberToString(get_current_core(), buffer, 2, true);
-    Output::putBytes(buffer, 2);
-    Output::putBytes("} ", 2);
+    builder.append(buffer, 2);
+    builder.append("} ", 2);
 
-    Output::putByte('[');
+    builder.append('[');
     const char* convertedLogType = convertLogTypeToString(logType);
-    Output::putBytes(convertedLogType, String::getStringSize(convertedLogType));
-    Output::putBytes("] : ", 4);
+    builder.append(convertedLogType, String::getStringSize(convertedLogType));
+    builder.append("] : ", 4);
 
-    Output::putBytes(string, stringSize);
-    Output::putByte('\n');
+    builder.append(string, stringSize);
+    builder.append('\n');
+
+    Output::putBytes(builder.string, builder.stringLength);
 
     isLogging = false;
 }
