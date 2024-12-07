@@ -3,6 +3,7 @@
 using namespace ROS;
 
 void Power::shutdown() {
+    Logger::log(Logger::INFO, "Shutdowning...");
     for (uint32_t i = 0; i < 16; ++i) {
         MailBox::mailbox[0] = 8 * 4;
         MailBox::mailbox[1] = MailBox::MAILBOX_REQUEST;
