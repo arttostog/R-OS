@@ -4,7 +4,6 @@
 #include <ros_standart.h>
 
 extern "C" {
-    void _start();
     uint64_t get_current_core();
 }
 

@@ -7,8 +7,6 @@
 #include <./drivers/clock/ros_clock.h>
 
 namespace ROS {
-    class Clock;
-
     class Uart {
     public:
         static const uint64_t UART0_BASE = Gpio::GPIO_PLUS_MMIO_BASES + 0x1000;
@@ -24,7 +22,7 @@ namespace ROS {
             UART0_ICR = UART0_BASE + 0x44
         };
 
-        static void init(Clock* clock);
+        static void init();
         static uint32_t read(IN uint64_t address);
         static void write(IN uint64_t address, IN uint32_t data);
     };

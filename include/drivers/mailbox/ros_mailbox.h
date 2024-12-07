@@ -9,11 +9,14 @@ namespace ROS {
     public:
         static volatile uint32_t mailbox[36];
         
-        static const uint64_t MAILBOX_REQUEST = 0,
+        static const uint64_t MAILBOX_REQUEST = 0;
+
+        enum : uint64_t {
             MAILBOX_TAG_GETSERIAL = 0x10004,
             MAILBOX_TAG_SETPOWER = 0x28001,
             MAILBOX_TAG_SETCLKRATE = 0x38002,
-            MAILBOX_TAG_LAST = 0;
+            MAILBOX_TAG_LAST = 0
+        };
 
         enum : byte_t {
             MAILBOX_CHANNEL_POWER,

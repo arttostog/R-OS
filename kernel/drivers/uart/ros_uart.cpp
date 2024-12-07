@@ -2,7 +2,7 @@
 
 using namespace ROS;
 
-void Uart::init(Clock* clock) {
+void Uart::init() {
     volatile uint32_t* uart0Cr = ((volatile uint32_t*) UART0_CR),
         *gpfsel1 = ((volatile uint32_t*) Gpio::GPFSEL1),
         *gppudclk0 = ((volatile uint32_t*) Gpio::GPPUDCLK0);
@@ -25,9 +25,9 @@ void Uart::init(Clock* clock) {
     newGpfsel1 |= (4 << 12) | (4 << 15);
     *gpfsel1 = newGpfsel1;
     *((volatile uint32_t*) Gpio::GPPUD) = 0;
-    clock->delayByCycles(150);
+    Clock::delayByCycles(150);
     *gppudclk0 = (1 << 14) | (1 << 15);
-    clock->delayByCycles(150);
+    Clock::delayByCycles(150);
     *gppudclk0 = 0;
 
     *((volatile uint32_t*) Uart::UART0_ICR) = 0x7FF;

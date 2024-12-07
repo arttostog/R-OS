@@ -3,11 +3,54 @@
 using namespace ROS;
 
 void Power::shutdown() {
-    for (uint32_t i = 0; i < TaskManager::coresForTasks; ++i)
-        TaskManager::tasks[i] = halt;
-    halt();
+    for (uint32_t i = 0; i < 16; ++i) {
+        MailBox::mailbox[0] = 8 * 4;
+        MailBox::mailbox[1] = MailBox::MAILBOX_REQUEST;
+        MailBox::mailbox[2] = MailBox::MAILBOX_TAG_SETPOWER;
+        MailBox::mailbox[3] = 8;
+        MailBox::mailbox[4] = 8;
+        MailBox::mailbox[5] = i;
+        MailBox::mailbox[6] = 0;
+        MailBox::mailbox[7] = MailBox::MAILBOX_TAG_LAST;
+        MailBox::call(MailBox::MAILBOX_CHANNEL_PROP);
+    }
+
+    *((volatile uint32_t*) Gpio::GPFSEL0) = 0;
+    *((volatile uint32_t*) Gpio::GPFSEL1) = 0;
+    *((volatile uint32_t*) Gpio::GPFSEL2) = 0;
+    *((volatile uint32_t*) Gpio::GPFSEL3) = 0;
+    *((volatile uint32_t*) Gpio::GPFSEL4) = 0;
+    *((volatile uint32_t*) Gpio::GPFSEL5) = 0;
+    *((volatile uint32_t*) Gpio::GPPUD) = 0;
+
+    volatile uint32_t* gppudclk0 = ((volatile uint32_t*) Gpio::GPPUDCLK0),
+        *gppudclk1 = ((volatile uint32_t*) Gpio::GPPUDCLK1);
+
+    Clock::delayByCycles(150);
+    *gppudclk0 = 0xffffffff;
+    *gppudclk1 = 0xffffffff;
+    Clock::delayByCycles(150);
+    *gppudclk0 = 0;
+    *gppudclk1 = 0;
+
+    uint64_t newPmRsts = *((volatile uint32_t*) PM_RSTS);
+    newPmRsts &= ~0xFFFFFAAA;
+    newPmRsts |= 0x555;
+
+    updatePm(newPmRsts);
 }
 
 void Power::softReset() {
-    _start();
+    Logger::log(Logger::INFO, "Resetting...");
+
+    uint64_t newPmRsts = *((volatile uint32_t*) PM_RSTS);
+    newPmRsts &= ~0xFFFFFAAA;
+
+    updatePm(newPmRsts);
+}
+
+void Power::updatePm(uint64_t newPmRsts) {
+    *((volatile uint32_t*) PM_RSTS) = PM_WDOG_MAGIC | newPmRsts;
+    *((volatile uint32_t*) PM_WDOG) = PM_WDOG_MAGIC | 10;
+    *((volatile uint32_t*) PM_RSTC) = PM_WDOG_MAGIC | PM_RSTC_FULL_RESET;
 }
