@@ -4,6 +4,7 @@
 #include <./utils/ros_string.h>
 #include <./drivers/uart/ros_uart_input.h>
 #include <./drivers/task-manager/ros_task_manager.h>
+#include <./drivers/mailbox/ros_mailbox.h>
 
 using namespace ROS;
 
@@ -57,6 +58,27 @@ void testTask() {
     Logger::log(Logger::INFO, "Testificate");
 }
 
+void mailboxTestCall() {
+    MailBox::mailbox[0] = 8 * 4;
+    MailBox::mailbox[1] = MailBox::MAILBOX_REQUEST;
+    MailBox::mailbox[2] = MailBox::MAILBOX_TAG_GETSERIAL;
+    MailBox::mailbox[3] = 8;
+    MailBox::mailbox[4] = 8;
+    MailBox::mailbox[5] = 0;
+    MailBox::mailbox[6] = 0;
+    MailBox::mailbox[7] = MailBox::MAILBOX_TAG_LAST;
+
+    if (MailBox::call(MailBox::MAILBOX_CHANNEL_PROP)) {
+        char buffer[10];
+        String::numberToString(MailBox::mailbox[6], buffer, 10, false);
+        Logger::log(Logger::INFO, buffer, 10);
+        String::numberToString(MailBox::mailbox[5], buffer, 10, false);
+        Logger::log(Logger::INFO, buffer, 10);
+        return;
+    }
+    Logger::log(Logger::ERROR, "Failed to get serial number!");
+}
+
 Clock clock;
 
 extern "C" {
@@ -69,6 +91,8 @@ extern "C" {
         TaskManager::addTask(testTask);
 
         clock.delay(2.5f);
+
+        mailboxTestCall();
 
         Logger::log(Logger::INFO, "Test 1");
         Logger::log(Logger::WARN, "Test 2");
