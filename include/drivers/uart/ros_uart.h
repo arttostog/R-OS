@@ -2,19 +2,27 @@
 #define ROS_UART_H
 
 #include <ros_standart.h>
-
-#define GPIO_BASE 0x200000
-
-#define UART0_BASE (GPIO_BASE + 0x1000)
-
-#define UART0_DR (UART0_BASE + 0x00)
-#define UART0_FR (UART0_BASE + 0x18)
-
-#define MMIO_BASE 0x3F000000
+#include <./drivers/gpio/ros_gpio.h>
+#include <./drivers/mailbox/ros_mailbox.h>
+#include <./drivers/clock/ros_clock.h>
 
 namespace ROS {
     class Uart {
     public:
+        static const uint64_t UART0_BASE = Gpio::GPIO_PLUS_MMIO_BASES + 0x1000;
+
+        enum : uint64_t {
+            UART0_DR = UART0_BASE + 0x00,
+            UART0_FR = UART0_BASE + 0x18,
+            UART0_IBRD = UART0_BASE + 0x24,
+            UART0_FBRD = UART0_BASE + 0x28,
+            UART0_LCRH = UART0_BASE + 0x2C,
+            UART0_CR = UART0_BASE + 0x30,
+            UART0_IMSC = UART0_BASE + 0x38,
+            UART0_ICR = UART0_BASE + 0x44
+        };
+
+        static void init();
         static uint32_t read(IN uint64_t address);
         static void write(IN uint64_t address, IN uint32_t data);
     };

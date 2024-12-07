@@ -3,7 +3,6 @@
 .global _start
 .global get_current_core
 
-.extern halt
 .extern kernel_main
 .extern kernel_loop
 .extern kernel_tasks
@@ -21,6 +20,8 @@ _start:
     sub x1, x0, #3
     cbz x1, fourth_core
 
+halt:
+    wfi
     b halt
 
 get_current_core:

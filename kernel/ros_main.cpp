@@ -1,9 +1,10 @@
 #include <./utils/ros_uart_logger.h>
 #include <./drivers/power/ros_power.h>
 #include <./drivers/clock/ros_clock.h>
-#include <./utils/ros_string.h>
+#include <./utils/string/ros_string.h>
 #include <./drivers/uart/ros_uart_input.h>
 #include <./drivers/task-manager/ros_task_manager.h>
+#include <./drivers/mailbox/ros_mailbox.h>
 
 using namespace ROS;
 
@@ -28,7 +29,7 @@ void helloCommand() {
 struct Command commands[COMMANDS_COUNT] = {
     { "hello", 5, helloCommand},
     { "shutdown", 8, Power::shutdown },
-    { "reboot", 6, Power::softReset }
+    { "reset", 5, Power::softReset }
 };
 
 bool equal(const byte_t* firstBuffer, const byte_t* secondBuffer, int32_t buffersSize) {
@@ -57,16 +58,43 @@ void testTask() {
     Logger::log(Logger::INFO, "Testificate");
 }
 
+void mailboxTestCall() {
+    MailBox::mailbox[0] = 8 * 4;
+    MailBox::mailbox[1] = MailBox::MAILBOX_REQUEST;
+    MailBox::mailbox[2] = MailBox::MAILBOX_TAG_GETSERIAL;
+    MailBox::mailbox[3] = 8;
+    MailBox::mailbox[4] = 8;
+    MailBox::mailbox[5] = 0;
+    MailBox::mailbox[6] = 0;
+    MailBox::mailbox[7] = MailBox::MAILBOX_TAG_LAST;
+
+    if (MailBox::call(MailBox::MAILBOX_CHANNEL_PROP)) {
+        char buffer[10];
+        String::numberToString(MailBox::mailbox[6], buffer, 10, false);
+        Logger::log(Logger::INFO, buffer, 10);
+        String::numberToString(MailBox::mailbox[5], buffer, 10, false);
+        Logger::log(Logger::INFO, buffer, 10);
+        return;
+    }
+    Logger::log(Logger::ERROR, "Failed to get serial number!");
+}
+
 Clock clock;
 
 extern "C" {
     void kernel_main() {
+
         clock = Clock();
+        Uart::init();
         Logger::clock = &clock;
 
         Logger::log(Logger::INFO, "Hello World!");
 
         TaskManager::addTask(testTask);
+
+        clock.delay(2.5f);
+
+        mailboxTestCall();
 
         Logger::log(Logger::INFO, "Test 1");
         Logger::log(Logger::WARN, "Test 2");
