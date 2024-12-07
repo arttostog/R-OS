@@ -3,7 +3,7 @@
 using namespace ROS;
 
 byte_t Input::getByte() {
-    while (Uart::read(UART0_FR) & (1 << 4))
+    while (Uart::read(Uart::UART0_FR) & (1 << 4))
         continue;
-    return Uart::read(UART0_DR);
+    return Uart::read(Uart::UART0_DR);
 }

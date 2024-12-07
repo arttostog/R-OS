@@ -3,15 +3,12 @@
 
 #include <ros_standart.h>
 
-#define CORES_FOR_TASKS 3
-
-extern "C" {
-    extern void (*tasks[CORES_FOR_TASKS]) ();
-}
-
 namespace ROS {
     class TaskManager {
     public:
+        static const uint32_t coresForTasks = 3;
+        static void (*tasks[coresForTasks]) ();
+
         static void addTask(IN void (*task) ());
     private:
         static uint32_t tasksIndex;
