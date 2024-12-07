@@ -83,7 +83,9 @@ Clock clock;
 
 extern "C" {
     void kernel_main() {
+
         clock = Clock();
+        Uart::init(&clock);
         Logger::clock = &clock;
 
         Logger::log(Logger::INFO, "Hello World!");

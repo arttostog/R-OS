@@ -2,7 +2,7 @@
 
 using namespace ROS;
 
-void* Logger::clock = nullptr;
+Clock* Logger::clock = nullptr;
 bool Logger::isLogging = false;
 
 void Logger::log(IN LogType logType, IN const char* string) {
@@ -20,7 +20,7 @@ void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSi
     if (clock != nullptr) {
         builder.append('(');
         char buffer[20];
-        String::numberToString(((Clock*) clock)->getUptime(), buffer, 20, true);
+        String::numberToString(clock->getUptime(), buffer, 20, true);
         builder.append(buffer, 20);
         builder.append(") ", 2);
     }

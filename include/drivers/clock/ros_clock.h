@@ -8,13 +8,15 @@
 namespace ROS {
     class Clock {
         public:
+            const static uint64_t MHZ = 1000000,
+                NANOSECONDS_IN_SECOND = 1000000000;
+
             Clock();
             uint32_t getFrequency();
             uint64_t getUptime();
             void delay(IN float64_t seconds);
+            void delayByCycles(IN uint64_t cycles);
         private:
-            const static uint64_t mhz = 1000000,
-                nanosecondsInSecond = 1000000000;
             uint64_t clockFrequency;
     };
 };
