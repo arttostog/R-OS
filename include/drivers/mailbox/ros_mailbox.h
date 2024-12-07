@@ -29,7 +29,7 @@ namespace ROS {
     private:
         static const uint64_t VIDEOCORE_MAILBOX = Gpio::MMIO_BASE + 0x0000B880;
         enum : uint64_t {
-            MAILBOX_READ = VIDEOCORE_MAILBOX + 0x0,
+            MAILBOX_READ = VIDEOCORE_MAILBOX + 0x00,
             MAILBOX_POLL = VIDEOCORE_MAILBOX + 0x10,
             MAILBOX_SENDER = VIDEOCORE_MAILBOX + 0x14,
             MAILBOX_STATUS = VIDEOCORE_MAILBOX + 0x18,
