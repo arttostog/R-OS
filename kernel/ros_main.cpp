@@ -68,6 +68,8 @@ extern "C" {
 
         TaskManager::addTask(testTask);
 
+        clock.delay(2.5f);
+
         Logger::log(Logger::INFO, "Test 1");
         Logger::log(Logger::WARN, "Test 2");
         Logger::log(Logger::ERROR, "Test 3");

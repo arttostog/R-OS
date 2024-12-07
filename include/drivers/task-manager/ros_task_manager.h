@@ -12,7 +12,7 @@ extern "C" {
 namespace ROS {
     class TaskManager {
     public:
-        static void addTask(void (*task) ());
+        static void addTask(IN void (*task) ());
     private:
         static uint32_t tasksIndex;
         static void updateTasksIndex();

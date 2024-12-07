@@ -14,6 +14,7 @@ namespace ROS {
             Clock();
             uint32_t getFrequency();
             uint64_t getUptime();
+            void delay(IN float64_t seconds);
         private:
             uint64_t clockFrequency;
     };

@@ -7,7 +7,7 @@ uint32_t TaskManager::tasksIndex = 0;
 extern "C" {
     void (*tasks[CORES_FOR_TASKS]) () = {};
 
-    void kernel_tasks(uint64_t coreId) {
+    void kernel_tasks(IN uint64_t coreId) {
         void (**task) () = &tasks[coreId - 1];
         while (true)
         {
@@ -19,7 +19,7 @@ extern "C" {
     }
 }
 
-void TaskManager::addTask(void (*task) ()) {
+void TaskManager::addTask(IN void (*task) ()) {
     while (true) {
         if (tasks[tasksIndex] == nullptr) {
             tasks[tasksIndex] = task;

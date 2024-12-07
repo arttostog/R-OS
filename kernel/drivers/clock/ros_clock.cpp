@@ -16,3 +16,9 @@ uint32_t Clock::getFrequency() {
 uint64_t Clock::getUptime() {
     return clock_uptime() * NANOSECONDS_IN_SECOND / clockFrequency;
 }
+
+void Clock::delay(IN float64_t seconds) {
+    uint64_t stop = getUptime() + (uint64_t) (seconds * NANOSECONDS_IN_SECOND);
+    while (getUptime() < stop)
+        continue;
+}
