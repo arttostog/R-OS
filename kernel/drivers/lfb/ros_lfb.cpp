@@ -55,14 +55,14 @@ Lfb::Lfb(Clock* clock) {
 
 void Lfb::show(const Image* imageToShow) {
     byte_t* image = (byte_t*) imageToShow->image;
-    int32_t width = imageToShow->imageWidth,
-        height = imageToShow->imageHeight;
+    int32_t imageWidth = imageToShow->imageWidth,
+        imageHeight = imageToShow->imageHeight;
 
     byte_t pixel[4],
-        *pointer = lfb + (height - height) / 2 * pitch + (width - width) * 2;
+        *pointer = lfb + (height - imageHeight) / 2 * pitch + (width - imageWidth) * 2;
 
-    for (int32_t y = 0; y < height; pointer += pitch - width * 4, ++y)
-        for (int32_t x = 0; x < width; image += 4, pointer += 4, ++x) {
+    for (int32_t y = 0; y < imageHeight; pointer += pitch - imageWidth * 4, ++y)
+        for (int32_t x = 0; x < imageWidth; image += 4, pointer += 4, ++x) {
             pixel[0] = image[3];
             pixel[1] = image[2];
             pixel[2] = image[1];
