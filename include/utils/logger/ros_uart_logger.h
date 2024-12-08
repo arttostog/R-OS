@@ -20,11 +20,11 @@ namespace ROS {
                 ERROR
             } LogType;
 
-            static Clock* clock;
-
+            static void setClock(Clock* newClock);
             static void log(IN LogType logType, IN const char* string);
             static void log(IN LogType logType, IN const char* string, IN uint32_t stringSize);
         private:
+            static Clock* clock;
             static bool isLogging;
             static const char* convertLogTypeToString(IN LogType logType);
     };

@@ -1,10 +1,12 @@
-#include <./utils/ros_uart_logger.h>
+#include <./utils/logger/ros_uart_logger.h>
 #include <./drivers/power/ros_power.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./utils/string/ros_string.h>
 #include <./drivers/uart/ros_uart_input.h>
 #include <./drivers/task-manager/ros_task_manager.h>
 #include <./drivers/mailbox/ros_mailbox.h>
+#include <./drivers/lfb/ros_lfb.h>
+#include <./utils/image-painter/ros_image_painter.h>
 
 using namespace ROS;
 
@@ -83,16 +85,25 @@ Clock clock;
 
 extern "C" {
     void kernel_main() {
+        uint32_t imageData[16384] = { };
+        struct Image image = {
+            imageData, 128, 128
+        };
+
+        ImagePainter::drawPixels(&image, 0, 16383, ImagePainter::LIGHT_RED);
 
         clock = Clock();
         Uart::init();
-        Logger::clock = &clock;
+        Logger::setClock(&clock);
+
+        Lfb lfb(&clock);
+        lfb.show(&image);
 
         Logger::log(Logger::INFO, "Hello World!");
 
         TaskManager::addTask(testTask);
 
-        clock.delay(2.5f);
+        //clock.delay(2.5f);
 
         mailboxTestCall();
 

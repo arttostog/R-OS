@@ -1,9 +1,13 @@
-#include <./utils/ros_uart_logger.h>
+#include <./utils/logger/ros_uart_logger.h>
 
 using namespace ROS;
 
 Clock* Logger::clock = nullptr;
 bool Logger::isLogging = false;
+
+void Logger::setClock(Clock* newClock) {
+    clock = newClock;
+}
 
 void Logger::log(IN LogType logType, IN const char* string) {
     log(logType, string, String::getStringSize(string));
@@ -43,7 +47,6 @@ void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSi
 
     isLogging = false;
 }
-
 const char* Logger::convertLogTypeToString(IN LogType logType) {
     switch (logType)
     {
