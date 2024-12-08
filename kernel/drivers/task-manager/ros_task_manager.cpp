@@ -2,7 +2,7 @@
 
 using namespace ROS;
 
-void (*TaskManager::tasks[TaskManager::coresForTasks]) () = { };
+void (*TaskManager::tasks[TaskManager::CORES_FOR_TASKS]) () = { };
 uint32_t TaskManager::tasksIndex = 0;
 
 extern "C" {
@@ -30,6 +30,6 @@ void TaskManager::addTask(IN void (*task) ()) {
 }
 
 void TaskManager::updateTasksIndex() {
-    if (++tasksIndex == coresForTasks)
+    if (++tasksIndex == CORES_FOR_TASKS)
         tasksIndex = 0;
 }
