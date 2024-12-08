@@ -7,6 +7,7 @@
 #include <./drivers/mailbox/ros_mailbox.h>
 #include <./drivers/lfb/ros_lfb.h>
 #include <./utils/image-painter/ros_image_painter.h>
+#include <./utils/color/ros_color.h>
 
 using namespace ROS;
 
@@ -85,18 +86,26 @@ Clock clock;
 
 extern "C" {
     void kernel_main() {
-        uint32_t imageData[16384] = { };
-        struct Image image = {
-            imageData, 128, 128
-        };
-
-        ImagePainter::drawPixels(&image, 0, 16383, ImagePainter::LIGHT_RED);
-
         clock = Clock();
         Uart::init();
         Logger::setClock(&clock);
 
         Lfb lfb(&clock);
+        Lfb::Screen screen = lfb.getScreen();
+
+        uint32_t imageData[102400] = { };
+        struct Image image = {
+            imageData, 320, 320, (screen.height - 320) / 2 * screen.pitch + (screen.width - 320) * 2, screen.pitch - 320 * 4
+        };
+        ImagePainter::drawPixels(&image, 0, 102400 - 1, Color::LIGHT_RED);
+        lfb.show(&image);
+
+        uint32_t imageData2[4096] = { };
+        image = {
+            imageData2, 64, 64, 32, screen.pitch - 64 * 4
+        };
+        ImagePainter::drawPixels(&image, 0, 4096 - 1, Color::BLUE);
+
         lfb.show(&image);
 
         Logger::log(Logger::INFO, "Hello World!");

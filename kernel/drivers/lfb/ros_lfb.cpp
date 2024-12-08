@@ -43,10 +43,10 @@ Lfb::Lfb(Clock* clock) {
 
     if (MailBox::call(MailBox::MAILBOX_CHANNEL_PROP) && MailBox::mailbox[20] == 32 && MailBox::mailbox[28] != 0) {
         MailBox::mailbox[28] &= 0x3FFFFFFF;
-        width = MailBox::mailbox[5];
-        height = MailBox::mailbox[6];
-        pitch = MailBox::mailbox[33];
-        isRgb = MailBox::mailbox[24];
+        screen.width = MailBox::mailbox[5];
+        screen.height = MailBox::mailbox[6];
+        screen.pitch = MailBox::mailbox[33];
+        screen.isRgb = MailBox::mailbox[24];
         lfb = (byte_t*) ((uint64_t) MailBox::mailbox[28]);
         return;
     }
@@ -59,15 +59,19 @@ void Lfb::show(const Image* imageToShow) {
         imageHeight = imageToShow->imageHeight;
 
     byte_t pixel[4],
-        *pointer = lfb + (height - imageHeight) / 2 * pitch + (width - imageWidth) * 2;
+        *pointer = lfb + imageToShow->imageStartPixelPosition;
 
-    for (int32_t y = 0; y < imageHeight; pointer += pitch - imageWidth * 4, ++y)
+    for (int32_t y = 0; y < imageHeight; pointer += imageToShow->imageNewLine, ++y)
         for (int32_t x = 0; x < imageWidth; image += 4, pointer += 4, ++x) {
             pixel[0] = image[3];
             pixel[1] = image[2];
             pixel[2] = image[1];
             pixel[3] = image[0];
 
-            *((uint32_t*) pointer) = isRgb ? *((uint32_t*) &pixel) : (uint32_t) (pixel[0] << 16 | pixel[1] << 8 | pixel[2]);
+            *((uint32_t*) pointer) = screen.isRgb ? *((uint32_t*) &pixel) : (uint32_t) (pixel[0] << 16 | pixel[1] << 8 | pixel[2]);
         }
+}
+
+Lfb::Screen Lfb::getScreen() const {
+    return screen;
 }

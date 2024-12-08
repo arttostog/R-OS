@@ -10,16 +10,23 @@ namespace ROS {
     class Clock;
 
     struct Image {
-        uint32_t* image, imageWidth, imageHeight;
+        uint32_t* image, imageWidth, imageHeight, imageStartPixelPosition, imageNewLine;
     };
-
+    
     class Lfb {
     public:
+        struct Screen {
+            uint32_t width, height, pitch;
+            bool isRgb;
+        };
+
         Lfb(IN Clock* clock);
+        
         void show(IN const Image* imageToShow);
+
+        Screen getScreen() const;
     private:
-        uint32_t width, height, pitch;
-        bool isRgb;
+        Screen screen;
         byte_t* lfb;
     };
 }
