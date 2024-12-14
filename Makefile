@@ -5,8 +5,6 @@ BUILD_DIRECTORY = ./build/
 CREATE_DIRS = if not exist "$(BUILD_DIRECTORY)" (mkdir "$(BUILD_DIRECTORY)")
 REMOVE_DIRS = if exist "$(BUILD_DIRECTORY)" (rmdir /s /q "$(BUILD_DIRECTORY)")
 
-AS = aarch64-none-elf-as
-
 G++ = aarch64-none-elf-g++
 PATH_TO_LINKER = ./linker/link.ld
 G++_FLAGS = -Wall -Wextra -ffreestanding -nostartfiles -static -I$(INCLUDE_DIRECTORY) -T $(PATH_TO_LINKER)

@@ -8,6 +8,8 @@
 #include <./drivers/lfb/ros_lfb.h>
 #include <./utils/image-painter/ros_image_painter.h>
 #include <./utils/color/ros_color.h>
+#include <./utils/font/ros_font_s.h>
+#include <./utils/font/ros_font.h>
 
 using namespace ROS;
 
@@ -108,11 +110,19 @@ extern "C" {
 
         lfb.show(&image);
 
+        Image xImage = {
+            nullptr, 0, 0, 0, 0 
+        };
+        Font::getSymbolAsImage(&xImage, '5');
+        xImage.imageNewLine = screen.pitch - xImage.imageWidth * 4;
+
+        lfb.show(&xImage);
+
         Logger::log(Logger::INFO, "Hello World!");
 
         TaskManager::addTask(testTask);
 
-        //clock.delay(2.5f);
+        Logger::log(Logger::INFO, font_pointer, 2);
 
         mailboxTestCall();
 

@@ -1,16 +1,19 @@
 ENTRY(_start)
 
+MEMORY
+{
+    ram : ORIGIN = 0x80000, LENGTH = 0x8000
+}
+
 SECTIONS
 {
-    . = 0x80000;
-    . = ALIGN(4096);
-    .text : { *(.text.boot) *(.text) }
-    .data : { *(.data) }
+    .text : { *(.text.boot) *(.text) } > ram
+    .data : { *(.data) } > ram
     .bss ALIGN(16) : {
         __bss_start = .;
         *(.bss COMMON)
         __bss_end = .;
-    }
+    } > ram
 
     . = ALIGN(4096);
     __first_core_stack = .;
