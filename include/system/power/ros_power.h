@@ -11,7 +11,6 @@ namespace ROS {
     class Power {
     public:
         static void shutdown();
-        static void softReset();
     private:
         enum : uint64_t {
             PM_RSTC = Gpio::MMIO_BASE + 0x10001C,
@@ -20,8 +19,6 @@ namespace ROS {
             PM_WDOG_MAGIC = 0x5a000000,
             PM_RSTC_FULL_RESET = 0x00000020
         };
-
-        static void updatePm(uint64_t newPmRsts);
     };
 }
 

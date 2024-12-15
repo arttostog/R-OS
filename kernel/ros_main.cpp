@@ -1,9 +1,9 @@
 #include <./system/logger/ros_uart_logger.h>
-#include <./drivers/power/ros_power.h>
+#include <./system/power/ros_power.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./utils/string/ros_string.h>
 #include <./drivers/uart/ros_uart_input.h>
-#include <./drivers/task-manager/ros_task_manager.h>
+#include <./system/task-manager/ros_task_manager.h>
 #include <./drivers/mailbox/ros_mailbox.h>
 #include <./drivers/lfb/ros_lfb.h>
 #include <./utils/image-painter/ros_image_painter.h>
@@ -33,8 +33,7 @@ void helloCommand() {
 
 struct Command commands[COMMANDS_COUNT] = {
     { "hello", 5, helloCommand},
-    { "shutdown", 8, Power::shutdown },
-    { "reset", 5, Power::softReset }
+    { "shutdown", 8, Power::shutdown }
 };
 
 bool equal(const byte_t* firstBuffer, const byte_t* secondBuffer, int32_t buffersSize) {
