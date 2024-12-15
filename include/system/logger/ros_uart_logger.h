@@ -14,19 +14,18 @@ namespace ROS {
     class Logger
     {
         public:
-            typedef enum {
-                INFO,
-                WARN,
-                ERROR
-            } LogType;
+            enum LogType : char {
+                SUCCESS = 'S',
+                INFO = 'I',
+                WARN = 'W',
+                ERROR = 'E'
+            };
 
-            static void setClock(Clock* newClock);
+            static void setClock(IN Clock* newClock);
             static void log(IN LogType logType, IN const char* string);
             static void log(IN LogType logType, IN const char* string, IN uint32_t stringSize);
         private:
             static Clock* clock;
-            static bool isLogging;
-            static const char* convertLogTypeToString(IN LogType logType);
     };
 };
 

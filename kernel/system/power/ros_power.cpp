@@ -34,11 +34,11 @@ void Power::shutdown() {
     *gppudclk0 = 0;
     *gppudclk1 = 0;
 
-    uint64_t newPmRsts = *((volatile uint32_t*) PM_RSTS);
+    uint64_t newPmRsts = *((volatile uint32_t*) POWER_MODE_RSTS);
     newPmRsts &= ~0xFFFFFAAA;
     newPmRsts |= 0x555;
 
-    *((volatile uint32_t*) PM_RSTS) = PM_WDOG_MAGIC | newPmRsts;
-    *((volatile uint32_t*) PM_WDOG) = PM_WDOG_MAGIC | 10;
-    *((volatile uint32_t*) PM_RSTC) = PM_WDOG_MAGIC | PM_RSTC_FULL_RESET;
+    *((volatile uint32_t*) POWER_MODE_RSTS) = POWER_MODE_WDOG_MAGIC | newPmRsts;
+    *((volatile uint32_t*) POWER_MODE_WDOG) = POWER_MODE_WDOG_MAGIC | 10;
+    *((volatile uint32_t*) POWER_MODE_RSTC) = POWER_MODE_WDOG_MAGIC | POWER_MODE_RSTC_FULL_RESET;
 }

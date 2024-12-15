@@ -11,7 +11,7 @@ namespace ROS {
     public:
         static const uint64_t UART0_BASE = Gpio::GPIO_PLUS_MMIO_BASES + 0x1000;
 
-        enum : uint64_t {
+        enum Uart0 : uint64_t {
             UART0_DR = UART0_BASE + 0x00,
             UART0_FR = UART0_BASE + 0x18,
             UART0_IBRD = UART0_BASE + 0x24,

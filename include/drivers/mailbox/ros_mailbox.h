@@ -11,14 +11,14 @@ namespace ROS {
         
         static const uint64_t MAILBOX_REQUEST = 0;
 
-        enum : uint64_t {
+        enum Tag : uint64_t {
             MAILBOX_TAG_GETSERIAL = 0x10004,
             MAILBOX_TAG_SETPOWER = 0x28001,
             MAILBOX_TAG_SETCLKRATE = 0x38002,
             MAILBOX_TAG_LAST = 0
         };
 
-        enum : byte_t {
+        enum Channel : byte_t {
             MAILBOX_CHANNEL_POWER,
             MAILBOX_CHANNEL_FB,
             MAILBOX_CHANNEL_VUART,
@@ -30,10 +30,10 @@ namespace ROS {
             MAILBOX_CHANNEL_PROP
         };
         
-        static bool call(byte_t channel);
+        static bool call(IN byte_t channel);
     private:
         static const uint64_t VIDEOCORE_MAILBOX = Gpio::MMIO_BASE + 0x0000B880;
-        enum : uint64_t {
+        enum Mailbox : uint64_t {
             MAILBOX_READ = VIDEOCORE_MAILBOX + 0x00,
             MAILBOX_POLL = VIDEOCORE_MAILBOX + 0x10,
             MAILBOX_SENDER = VIDEOCORE_MAILBOX + 0x14,

@@ -9,6 +9,8 @@ namespace ROS {
         public:
             static void putByte(IN byte_t byte);
             static void putBytes(IN const byte_t* bytes, IN uint32_t bytesCount);
+        private:
+            static bool isBusy;
     };
 };
 

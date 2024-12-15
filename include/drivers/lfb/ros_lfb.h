@@ -7,11 +7,6 @@
 #include <./system/logger/ros_uart_logger.h>
 
 namespace ROS {
-    class Clock;
-
-    struct Image {
-        uint32_t* image, imageWidth, imageHeight, imageStartPixelPosition, imageNewLine;
-    };
     
     class Lfb {
     public:
@@ -20,7 +15,11 @@ namespace ROS {
             bool isRgb;
         };
 
-        Lfb(IN Clock* clock);
+        struct Image {
+            uint32_t* image, imageWidth, imageHeight, imageStartPixelPosition, imageNewLine;
+        };
+
+        Lfb();
         
         void show(IN const Image* imageToShow);
 

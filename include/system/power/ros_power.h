@@ -12,12 +12,12 @@ namespace ROS {
     public:
         static void shutdown();
     private:
-        enum : uint64_t {
-            PM_RSTC = Gpio::MMIO_BASE + 0x10001C,
-            PM_RSTS = Gpio::MMIO_BASE + 0x100020,
-            PM_WDOG = Gpio::MMIO_BASE + 0x100024,
-            PM_WDOG_MAGIC = 0x5a000000,
-            PM_RSTC_FULL_RESET = 0x00000020
+        enum PowerMode : uint64_t {
+            POWER_MODE_RSTC = Gpio::MMIO_BASE + 0x10001C,
+            POWER_MODE_RSTS = Gpio::MMIO_BASE + 0x100020,
+            POWER_MODE_WDOG = Gpio::MMIO_BASE + 0x100024,
+            POWER_MODE_WDOG_MAGIC = 0x5a000000,
+            POWER_MODE_RSTC_FULL_RESET = 0x00000020
         };
     };
 }

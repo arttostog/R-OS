@@ -3,9 +3,8 @@
 using namespace ROS;
 
 Clock* Logger::clock = nullptr;
-bool Logger::isLogging = false;
 
-void Logger::setClock(Clock* newClock) {
+void Logger::setClock(IN Clock* newClock) {
     clock = newClock;
 }
 
@@ -14,11 +13,6 @@ void Logger::log(IN LogType logType, IN const char* string) {
 }
 
 void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSize) {
-    while (isLogging)
-        continue;
-
-    isLogging = true;
-
     StringBuilder builder;
 
     if (clock != nullptr) {
@@ -36,27 +30,11 @@ void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSi
     builder.append("} ", 2);
 
     builder.append('[');
-    const char* convertedLogType = convertLogTypeToString(logType);
-    builder.append(convertedLogType, String::getStringSize(convertedLogType));
+    builder.append(logType);
     builder.append("] : ", 4);
 
     builder.append(string, stringSize);
     builder.append('\n');
 
     Output::putBytes(builder.string, builder.stringLength);
-
-    isLogging = false;
-}
-const char* Logger::convertLogTypeToString(IN LogType logType) {
-    switch (logType)
-    {
-        case INFO:
-            return "INFO";
-        case WARN:
-            return "WARN";
-        case ERROR:
-            return "ERROR";
-        default:
-            return "UNDEFINED";
-    }
 }

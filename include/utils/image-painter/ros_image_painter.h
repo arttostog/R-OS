@@ -9,8 +9,8 @@ namespace ROS {
 
     class ImagePainter {
     public:
-        static void drawPixel(OUT Image* image, IN uint32_t pixelPosition, IN uint32_t color);
-        static void drawPixels(OUT Image* image, IN uint32_t startPixelPosition, IN uint32_t endPixelPosition, IN uint32_t color);
+        static void drawPixel(OUT Lfb::Image* image, IN uint32_t pixelPosition, IN uint32_t color);
+        static void drawPixels(OUT Lfb::Image* image, IN uint32_t startPixelPosition, IN uint32_t endPixelPosition, IN uint32_t color);
     };
 }
 
