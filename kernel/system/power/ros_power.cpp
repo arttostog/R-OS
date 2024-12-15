@@ -1,4 +1,4 @@
-#include <./drivers/power/ros_power.h>
+#include <./system/power/ros_power.h>
 
 using namespace ROS;
 
@@ -38,19 +38,6 @@ void Power::shutdown() {
     newPmRsts &= ~0xFFFFFAAA;
     newPmRsts |= 0x555;
 
-    updatePm(newPmRsts);
-}
-
-void Power::softReset() {
-    Logger::log(Logger::INFO, "Resetting...");
-
-    uint64_t newPmRsts = *((volatile uint32_t*) PM_RSTS);
-    newPmRsts &= ~0xFFFFFAAA;
-
-    updatePm(newPmRsts);
-}
-
-void Power::updatePm(uint64_t newPmRsts) {
     *((volatile uint32_t*) PM_RSTS) = PM_WDOG_MAGIC | newPmRsts;
     *((volatile uint32_t*) PM_WDOG) = PM_WDOG_MAGIC | 10;
     *((volatile uint32_t*) PM_RSTC) = PM_WDOG_MAGIC | PM_RSTC_FULL_RESET;

@@ -1,10 +1,15 @@
-#include <./utils/ros_uart_logger.h>
-#include <./drivers/power/ros_power.h>
+#include <./system/logger/ros_uart_logger.h>
+#include <./system/power/ros_power.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./utils/string/ros_string.h>
 #include <./drivers/uart/ros_uart_input.h>
-#include <./drivers/task-manager/ros_task_manager.h>
+#include <./system/task-manager/ros_task_manager.h>
 #include <./drivers/mailbox/ros_mailbox.h>
+#include <./drivers/lfb/ros_lfb.h>
+#include <./utils/image-painter/ros_image_painter.h>
+#include <./utils/color/ros_color.h>
+#include <./system/font/ros_font_s.h>
+#include <./system/font/ros_font.h>
 
 using namespace ROS;
 
@@ -28,8 +33,7 @@ void helloCommand() {
 
 struct Command commands[COMMANDS_COUNT] = {
     { "hello", 5, helloCommand},
-    { "shutdown", 8, Power::shutdown },
-    { "reset", 5, Power::softReset }
+    { "shutdown", 8, Power::shutdown }
 };
 
 bool equal(const byte_t* firstBuffer, const byte_t* secondBuffer, int32_t buffersSize) {
@@ -83,16 +87,41 @@ Clock clock;
 
 extern "C" {
     void kernel_main() {
-
         clock = Clock();
         Uart::init();
-        Logger::clock = &clock;
+        Logger::setClock(&clock);
+
+        Lfb lfb(&clock);
+        Lfb::Screen screen = lfb.getScreen();
+
+        uint32_t imageData[102400] = { };
+        struct Image image = {
+            imageData, 320, 320, (screen.height - 320) / 2 * screen.pitch + (screen.width - 320) * 2, screen.pitch - 320 * 4
+        };
+        ImagePainter::drawPixels(&image, 0, 102400 - 1, Color::LIGHT_RED);
+        lfb.show(&image);
+
+        uint32_t imageData2[4096] = { };
+        image = {
+            imageData2, 64, 64, 32, screen.pitch - 64 * 4
+        };
+        ImagePainter::drawPixels(&image, 0, 4096 - 1, Color::BLUE);
+
+        lfb.show(&image);
+
+        Image xImage = {
+            nullptr, 0, 0, 0, 0 
+        };
+        Font::getSymbolAsImage(&xImage, '5');
+        xImage.imageNewLine = screen.pitch - xImage.imageWidth * 4;
+
+        lfb.show(&xImage);
 
         Logger::log(Logger::INFO, "Hello World!");
 
         TaskManager::addTask(testTask);
 
-        clock.delay(2.5f);
+        Logger::log(Logger::INFO, font_pointer, 2);
 
         mailboxTestCall();
 
