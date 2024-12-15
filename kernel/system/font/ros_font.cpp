@@ -5,7 +5,7 @@ using namespace ROS;
 const uint32_t* Font::symbolPointer = (uint32_t*) (((uint64_t) font_pointer) + 0x8A);
 uint32_t Font::symbolImage[FONT_SYMBOL_HEIGHT * FONT_SYMBOL_WIDTH] = { };
 
-void Font::getSymbolAsImage(Image* image, char symbol) {
+void Font::getSymbolAsImage(IN Lfb::Image* image, IN char symbol) {
     image->imageWidth = FONT_SYMBOL_WIDTH;
     image->imageHeight = FONT_SYMBOL_HEIGHT;
     

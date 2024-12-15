@@ -30,7 +30,7 @@ namespace ROS {
             MAILBOX_CHANNEL_PROP
         };
         
-        static bool call(byte_t channel);
+        static bool call(IN byte_t channel);
     private:
         static const uint64_t VIDEOCORE_MAILBOX = Gpio::MMIO_BASE + 0x0000B880;
         enum Mailbox : uint64_t {

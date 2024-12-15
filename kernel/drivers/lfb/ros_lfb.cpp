@@ -2,9 +2,7 @@
 
 using namespace ROS;
 
-Lfb::Lfb(Clock* clock) {
-    clock->delay(1.0f);
-
+Lfb::Lfb() {
     MailBox::mailbox[0] = 35 * 4;
     MailBox::mailbox[1] = MailBox::MAILBOX_REQUEST;
     MailBox::mailbox[2] = 0x48003;

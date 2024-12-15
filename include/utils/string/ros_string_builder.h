@@ -7,16 +7,16 @@
 namespace ROS {
     class StringBuilder {
     public:
-        static const uint32_t MAX_STRING_LENGTH = 127;
+        static const uint32_t MAX_STRING_LENGTH = 511;
 
         char string[MAX_STRING_LENGTH + 1];
         uint32_t stringLength;
 
         StringBuilder();
 
-        void append(const char* string);
-        void append(char symbol);
-        void append(const char* string, uint32_t stringLength);
+        void append(IN const char* string);
+        void append(IN char symbol);
+        void append(IN const char* string, uint32_t stringLength);
     };
 }
 

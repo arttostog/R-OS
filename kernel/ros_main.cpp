@@ -67,10 +67,10 @@ extern "C" {
         Uart::init();
         Logger::setClock(&clock);
 
-        Lfb lfb(&clock);
+        Lfb lfb;
         Lfb::Screen screen = lfb.getScreen();
 
-        Image xImage = {
+        Lfb::Image xImage = {
             nullptr, 0, 0, 0, 0 
         };
         Font::getSymbolAsImage(&xImage, 'R');
