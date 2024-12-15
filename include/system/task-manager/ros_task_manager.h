@@ -12,6 +12,7 @@ namespace ROS {
         static void addTask(IN void (*task) ());
     private:
         static uint32_t tasksIndex;
+
         static void updateTasksIndex();
     };
 }

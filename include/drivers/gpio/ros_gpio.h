@@ -10,7 +10,7 @@ namespace ROS {
                 MMIO_BASE = 0x3F000000,
                 GPIO_PLUS_MMIO_BASES = GPIO_BASE + MMIO_BASE;
 
-            enum : uint64_t {
+            enum Address : uint64_t {
                 GPFSEL0 = GPIO_PLUS_MMIO_BASES + 0x00,
                 GPFSEL1 = GPIO_PLUS_MMIO_BASES + 0x04,
                 GPFSEL2 = GPIO_PLUS_MMIO_BASES + 0x08,

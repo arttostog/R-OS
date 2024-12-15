@@ -8,7 +8,7 @@
 namespace ROS {
     class Clock {
         public:
-            const static uint64_t MHZ = 1000000,
+            static const uint64_t MHZ = 1000000,
                 NANOSECONDS_IN_SECOND = 1000000000;
 
             Clock();
