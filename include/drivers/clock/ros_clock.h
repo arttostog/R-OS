@@ -2,10 +2,14 @@
 #define ROS_CLOCK_H
 
 #include <ros_standart.h>
-#include <./drivers/clock/ros_clock_s.h>
 #include <./system/logger/ros_uart_logger.h>
 
 namespace ROS {
+    extern "C" {
+        uint32_t clock_frequency();
+        uint64_t clock_uptime();
+    }
+
     class Clock {
         public:
             static const uint64_t MHZ = 1000000,
