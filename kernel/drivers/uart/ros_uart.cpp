@@ -18,23 +18,25 @@ void Uart::init() {
     MailBox::mailbox[6] = 4 * Clock::MHZ;
     MailBox::mailbox[7] = 0;
     MailBox::mailbox[8] = MailBox::MAILBOX_TAG_LAST;
-    MailBox::call(MailBox::MAILBOX_CHANNEL_PROP);
+    if (MailBox::call(MailBox::MAILBOX_CHANNEL_PROP)) {
+        uint32_t newGpfsel1 = *gpfsel1;
+        newGpfsel1 &= ~((7 << 12) | (7 << 15));
+        newGpfsel1 |= (4 << 12) | (4 << 15);
+        *gpfsel1 = newGpfsel1;
+        *((volatile uint32_t*) Gpio::GPPUD) = 0;
+        Clock::delayByCycles(150);
+        *gppudclk0 = (1 << 14) | (1 << 15);
+        Clock::delayByCycles(150);
+        *gppudclk0 = 0;
 
-    uint32_t newGpfsel1 = *gpfsel1;
-    newGpfsel1 &= ~((7 << 12) | (7 << 15));
-    newGpfsel1 |= (4 << 12) | (4 << 15);
-    *gpfsel1 = newGpfsel1;
-    *((volatile uint32_t*) Gpio::GPPUD) = 0;
-    Clock::delayByCycles(150);
-    *gppudclk0 = (1 << 14) | (1 << 15);
-    Clock::delayByCycles(150);
-    *gppudclk0 = 0;
-
-    *((volatile uint32_t*) Uart::UART0_ICR) = 0x7FF;
-    *((volatile uint32_t*) Uart::UART0_IBRD) = 2;
-    *((volatile uint32_t*) Uart::UART0_FBRD) = 0xB;
-    *((volatile uint32_t*) Uart::UART0_LCRH) = 0x7 << 4;
-    *uart0Cr = 0x301;
+        *((volatile uint32_t*) Uart::UART0_ICR) = 0x7FF;
+        *((volatile uint32_t*) Uart::UART0_IBRD) = 2;
+        *((volatile uint32_t*) Uart::UART0_FBRD) = 0xB;
+        *((volatile uint32_t*) Uart::UART0_LCRH) = 0x7 << 4;
+        *uart0Cr = 0x301;
+        return;
+    }
+    Logger::log(Logger::ERROR, "Unable to set uart settings!");
 }
 
 uint32_t Uart::read(IN uint64_t address){

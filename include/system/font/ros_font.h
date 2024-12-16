@@ -3,6 +3,7 @@
 
 #include <ros_standart.h>
 #include <./drivers/lfb/ros_lfb.h>
+#include <./utils/image-from-bmp/ros_image_from_bmp.h>
 
 namespace ROS {
     class Lfb;
@@ -11,13 +12,12 @@ namespace ROS {
     class Font {
     public:
         static const uint32_t FONT_SYMBOL_WIDTH = 5,
-            FONT_SYMBOL_HEIGHT = 7;
+            FONT_SYMBOL_HEIGHT = 7,
+            NEW_LINE_MARGIN = FONT_SYMBOL_WIDTH * 128;
 
-        static void getSymbolAsImage(IN Lfb::Image* image, IN char symbol);
+        static void getSymbolAsImage(OUT Lfb::Image* image, OUT uint32_t symbolBuffer[FONT_SYMBOL_HEIGHT * FONT_SYMBOL_WIDTH], IN char symbol);
     private:
-        static const uint32_t* symbolPointer;
         static uint32_t symbolImage[FONT_SYMBOL_HEIGHT * FONT_SYMBOL_WIDTH];
-        static const uint32_t NEW_LINE_MARGIN = FONT_SYMBOL_WIDTH * 128;
     };
 }
 

@@ -45,31 +45,40 @@ Lfb::Lfb() {
         screen.height = MailBox::mailbox[6];
         screen.pitch = MailBox::mailbox[33];
         screen.isRgb = MailBox::mailbox[24];
-        lfb = (byte_t*) ((uint64_t) MailBox::mailbox[28]);
+        lfb = (void*) ((uint64_t) MailBox::mailbox[28]);
         return;
     }
     Logger::log(Logger::ERROR, "Unable to set screen settings!");
 }
 
-void Lfb::show(const Image* imageToShow) {
-    byte_t* image = (byte_t*) imageToShow->image;
+void Lfb::show(IN const Image* imageToShow) {
+    uint32_t* image = imageToShow->image;
     int32_t imageWidth = imageToShow->imageWidth,
         imageHeight = imageToShow->imageHeight;
 
-    byte_t pixel[4],
-        *pointer = lfb + imageToShow->imageStartPixelPosition;
+    byte_t *pointer = (byte_t*) ((uint64_t) lfb + imageToShow->imageStartPixelPosition);
 
     for (int32_t y = 0; y < imageHeight; pointer += imageToShow->imageNewLine, ++y)
-        for (int32_t x = 0; x < imageWidth; image += 4, pointer += 4, ++x) {
-            pixel[0] = image[3];
-            pixel[1] = image[2];
-            pixel[2] = image[1];
-            pixel[3] = image[0];
+        for (int32_t x = 0; x < imageWidth; ++image, pointer += 4, ++x)
+            *((uint32_t*) pointer) = convertColor(*image);
+}
 
-            *((uint32_t*) pointer) = screen.isRgb ? *((uint32_t*) &pixel) : (uint32_t) (pixel[0] << 16 | pixel[1] << 8 | pixel[2]);
+void Lfb::clearScreen() {
+    fillScreen(0x000000FF);
+}
+
+void Lfb::fillScreen(IN uint32_t color) {
+    for (uint32_t y = 0, lfbIndex = 0; y < screen.height; ++y)
+        for (uint32_t x = 0; x < screen.width; ++lfbIndex, ++x) {
+            ((uint32_t*) lfb)[lfbIndex] = convertColor(color);
         }
 }
 
-Lfb::Screen Lfb::getScreen() const {
+Lfb::Screen Lfb::getScreen() {
     return screen;
+}
+
+uint32_t Lfb::convertColor(IN uint32_t color) {
+    byte_t* oldColor = ((byte_t*) &color);
+    return (uint32_t) oldColor[3] + (screen.isRgb ? ((uint32_t) oldColor[0] << 24) + ((uint32_t) oldColor[1] << 16) + ((uint32_t) oldColor[2] << 8) : (uint32_t) oldColor[3] + ((uint32_t) oldColor[2] << 24) + ((uint32_t) oldColor[1] << 16) + ((uint32_t) oldColor[0] << 8));
 }

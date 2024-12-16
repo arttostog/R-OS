@@ -15,14 +15,14 @@ namespace ROS {
             static const uint64_t MHZ = 1000000,
                 NANOSECONDS_IN_SECOND = 1000000000;
 
-            Clock();
-            uint32_t getFrequency();
-            uint64_t getUptime();
-            void delay(IN float64_t seconds);
+            static void init();
+            static uint32_t getFrequency();
+            static uint64_t getUptime();
+            static void delay(IN float64_t seconds);
             
             static void delayByCycles(IN uint64_t cycles);
         private:
-            uint64_t clockFrequency;
+            static uint64_t clockFrequency;
     };
 };
 

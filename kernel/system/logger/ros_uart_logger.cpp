@@ -2,10 +2,10 @@
 
 using namespace ROS;
 
-Clock* Logger::clock = nullptr;
-
-void Logger::setClock(IN Clock* newClock) {
-    clock = newClock;
+void Logger::log(IN LogType logType, IN uint64_t number) {
+    char buffer[20];
+    String::numberToString(number, buffer, 20, true);
+    log(logType, buffer, 20);
 }
 
 void Logger::log(IN LogType logType, IN const char* string) {
@@ -15,18 +15,16 @@ void Logger::log(IN LogType logType, IN const char* string) {
 void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSize) {
     StringBuilder builder;
 
-    if (clock != nullptr) {
-        builder.append('(');
-        char buffer[20];
-        String::numberToString(clock->getUptime(), buffer, 20, true);
-        builder.append(buffer, 20);
-        builder.append(") ", 2);
-    }
+    builder.append('(');
+    char buffer[20];
+    String::numberToString(Clock::getUptime(), buffer, 20, true);
+    builder.append(buffer, 20);
+    builder.append(") ", 2);
 
     builder.append("{core-", 6);
-    char buffer[2];
-    String::numberToString(get_current_core(), buffer, 2, true);
-    builder.append(buffer, 2);
+    char coreBuffer[2];
+    String::numberToString(get_current_core(), coreBuffer, 2, true);
+    builder.append(coreBuffer, 2);
     builder.append("} ", 2);
 
     builder.append('[');
