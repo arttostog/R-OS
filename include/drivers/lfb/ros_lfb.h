@@ -20,16 +20,16 @@ namespace ROS {
             uint32_t* image, imageWidth, imageHeight, imageStartPixelPosition, imageNewLine;
         };
 
-        Lfb();
-        void show(IN const Image* imageToShow);
-        void clearScreen();
-        void fillScreen(IN uint32_t color);
-        Screen getScreen();
+        static void init();
+        static void show(IN const Image* imageToShow);
+        static void clearScreen();
+        static void fillScreen(IN uint32_t color);
+        static Screen getScreen();
     private:
-        Screen screen;
-        void* lfb;
+        static Screen screen;
+        static void* lfb;
 
-        uint32_t convertColor(IN uint32_t color);
+        static uint32_t convertColor(IN uint32_t color);
     };
 }
 

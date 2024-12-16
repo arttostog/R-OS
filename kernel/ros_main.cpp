@@ -7,6 +7,7 @@
 #include <./system/font/ros_font.h>
 #include <./utils/image-from-bmp/ros_image_from_bmp.h>
 #include <./system/logo/ros_logo.h>
+#include <./services/console/ros_console_handler.h>
 
 using namespace ROS;
 
@@ -59,7 +60,7 @@ void coresTestTask() {
     Logger::log(Logger::SUCCESS, "Cores -> working!");
 }
 
-Lfb lfb;
+ConsoleHandler console;
 
 extern "C" {
     void kernel_main() {
@@ -68,8 +69,8 @@ extern "C" {
 
         Logger::log(Logger::INFO, "Hello from R-OS!");
 
-        lfb = Lfb();
-        Lfb::Screen screen = lfb.getScreen();
+        Lfb::init();
+        Lfb::Screen screen = Lfb::getScreen();
 
         uint32_t logoBuffer[Logo::LOGO_WIDTH * Logo::LOGO_HEIGHT];
         Lfb::Image logoImage = {
@@ -78,7 +79,7 @@ extern "C" {
 
         ImageFromBmp::get(&logoImage, logo_pointer, logoImage.imageWidth * (logoImage.imageHeight - 1), logoImage.imageWidth);
 
-        lfb.show(&logoImage);
+        Lfb::show(&logoImage);
 
         TaskManager::addTask(coresTestTask);
 

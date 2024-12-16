@@ -2,7 +2,10 @@
 
 using namespace ROS;
 
-Lfb::Lfb() {
+Lfb::Screen Lfb::screen = { };
+void* Lfb::lfb = nullptr;
+
+void Lfb::init() {
     MailBox::mailbox[0] = 35 * 4;
     MailBox::mailbox[1] = MailBox::MAILBOX_REQUEST;
     MailBox::mailbox[2] = 0x48003;
