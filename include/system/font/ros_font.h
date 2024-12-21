@@ -11,9 +11,11 @@ namespace ROS {
     extern "C" const byte_t font_pointer[];
     class Font {
     public:
-        static const uint32_t FONT_SYMBOL_WIDTH = 5,
+        enum Settings : uint32_t {
+            FONT_SYMBOL_WIDTH = 5,
             FONT_SYMBOL_HEIGHT = 7,
-            NEW_LINE_MARGIN = FONT_SYMBOL_WIDTH * 128;
+            NEW_LINE_MARGIN = FONT_SYMBOL_WIDTH * 128
+        };
 
         static void getSymbolAsImage(OUT Lfb::Image* image, OUT uint32_t symbolBuffer[FONT_SYMBOL_HEIGHT * FONT_SYMBOL_WIDTH], IN char symbol);
     private:

@@ -8,8 +8,10 @@ namespace ROS {
 
     class Logo {
     public:
-        static const uint32_t LOGO_WIDTH = 32,
-            LOGO_HEIGHT = 32;
+        enum Settings : uint32_t {
+            LOGO_WIDTH = 32,
+            LOGO_HEIGHT = 32
+        };
     };
 }
 
