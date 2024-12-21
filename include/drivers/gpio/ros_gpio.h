@@ -6,11 +6,11 @@
 namespace ROS {
     class Gpio {
         public:
-            static const uint64_t GPIO_BASE = 0x200000,
-                MMIO_BASE = 0x3F000000,
-                GPIO_PLUS_MMIO_BASES = GPIO_BASE + MMIO_BASE;
-
             enum Address : uint64_t {
+                GPIO_BASE = 0x200000,
+                MMIO_BASE = 0x3F000000,
+                GPIO_PLUS_MMIO_BASES = GPIO_BASE + MMIO_BASE,
+
                 GPFSEL0 = GPIO_PLUS_MMIO_BASES + 0x00,
                 GPFSEL1 = GPIO_PLUS_MMIO_BASES + 0x04,
                 GPFSEL2 = GPIO_PLUS_MMIO_BASES + 0x08,

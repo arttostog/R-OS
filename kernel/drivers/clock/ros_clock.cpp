@@ -2,7 +2,9 @@
 
 using namespace ROS;
 
-Clock::Clock() {
+uint64_t Clock::clockFrequency = 0;
+
+void Clock::init() {
     clockFrequency = clock_frequency();
 
     if (clockFrequency < 1 * MHZ || clockFrequency > 500 * MHZ)

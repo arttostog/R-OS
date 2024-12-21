@@ -20,12 +20,10 @@ namespace ROS {
                 WARN = 'W',
                 ERROR = 'E'
             };
-
-            static void setClock(IN Clock* newClock);
+            
+            static void log(IN LogType logType, IN uint64_t number);
             static void log(IN LogType logType, IN const char* string);
             static void log(IN LogType logType, IN const char* string, IN uint32_t stringSize);
-        private:
-            static Clock* clock;
     };
 };
 

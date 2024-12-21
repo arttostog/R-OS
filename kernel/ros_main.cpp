@@ -5,6 +5,9 @@
 #include <./system/task-manager/ros_task_manager.h>
 #include <./drivers/lfb/ros_lfb.h>
 #include <./system/font/ros_font.h>
+#include <./utils/image-from-bmp/ros_image_from_bmp.h>
+#include <./system/logo/ros_logo.h>
+#include <./services/console/ros_console_handler.h>
 
 using namespace ROS;
 
@@ -57,25 +60,26 @@ void coresTestTask() {
     Logger::log(Logger::SUCCESS, "Cores -> working!");
 }
 
-Clock clock;
+ConsoleHandler console;
 
 extern "C" {
     void kernel_main() {
+        Clock::init();
+        Uart::init();
+
         Logger::log(Logger::INFO, "Hello from R-OS!");
 
-        clock = Clock();
-        Uart::init();
-        Logger::setClock(&clock);
+        Lfb::init();
+        Lfb::Screen screen = Lfb::getScreen();
 
-        Lfb lfb;
-        Lfb::Screen screen = lfb.getScreen();
-
-        Lfb::Image xImage = {
-            nullptr, 0, 0, 0, 0 
+        uint32_t logoBuffer[Logo::LOGO_WIDTH * Logo::LOGO_HEIGHT];
+        Lfb::Image logoImage = {
+            logoBuffer, Logo::LOGO_WIDTH, Logo::LOGO_HEIGHT, (screen.height - Logo::LOGO_WIDTH) / 2 * screen.pitch + (screen.width - Logo::LOGO_WIDTH) * 2, screen.pitch - logoImage.imageWidth * 4
         };
-        Font::getSymbolAsImage(&xImage, 'R');
-        xImage.imageNewLine = screen.pitch - xImage.imageWidth * 4;
-        lfb.show(&xImage);
+
+        ImageFromBmp::get(&logoImage, logo_pointer, logoImage.imageWidth * (logoImage.imageHeight - 1), logoImage.imageWidth);
+
+        Lfb::show(&logoImage);
 
         TaskManager::addTask(coresTestTask);
 

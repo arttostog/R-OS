@@ -9,7 +9,7 @@ namespace ROS {
     public:
         static volatile uint32_t mailbox[36];
         
-        static const uint64_t MAILBOX_REQUEST = 0;
+        static constexpr uint64_t MAILBOX_REQUEST = 0;
 
         enum Tag : uint64_t {
             MAILBOX_TAG_GETSERIAL = 0x10004,
@@ -32,8 +32,8 @@ namespace ROS {
         
         static bool call(IN byte_t channel);
     private:
-        static const uint64_t VIDEOCORE_MAILBOX = Gpio::MMIO_BASE + 0x0000B880;
         enum Mailbox : uint64_t {
+            VIDEOCORE_MAILBOX = Gpio::MMIO_BASE + 0x0000B880,
             MAILBOX_READ = VIDEOCORE_MAILBOX + 0x00,
             MAILBOX_POLL = VIDEOCORE_MAILBOX + 0x10,
             MAILBOX_SENDER = VIDEOCORE_MAILBOX + 0x14,

@@ -5,6 +5,7 @@
 #include <./drivers/clock/ros_clock.h>
 #include <./drivers/mailbox/ros_mailbox.h>
 #include <./system/logger/ros_uart_logger.h>
+#include <./utils/color/ros_color.h>
 
 namespace ROS {
     
@@ -19,14 +20,16 @@ namespace ROS {
             uint32_t* image, imageWidth, imageHeight, imageStartPixelPosition, imageNewLine;
         };
 
-        Lfb();
-        
-        void show(IN const Image* imageToShow);
-
-        Screen getScreen() const;
+        static void init();
+        static void show(IN const Image* imageToShow);
+        static void clearScreen();
+        static void fillScreen(IN uint32_t color);
+        static Screen getScreen();
     private:
-        Screen screen;
-        byte_t* lfb;
+        static Screen screen;
+        static void* lfb;
+
+        static uint32_t convertColor(IN uint32_t color);
     };
 }
 

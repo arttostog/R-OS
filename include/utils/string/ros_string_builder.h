@@ -7,7 +7,7 @@
 namespace ROS {
     class StringBuilder {
     public:
-        static const uint32_t MAX_STRING_LENGTH = 511;
+        static constexpr uint32_t MAX_STRING_LENGTH = 511;
 
         char string[MAX_STRING_LENGTH + 1];
         uint32_t stringLength;
