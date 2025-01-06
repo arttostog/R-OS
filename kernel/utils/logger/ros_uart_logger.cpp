@@ -1,4 +1,4 @@
-#include <./system/logger/ros_uart_logger.h>
+#include <./utils/logger/ros_uart_logger.h>
 
 using namespace ROS;
 
@@ -34,5 +34,5 @@ void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSi
     builder.append(string, stringSize);
     builder.append('\n');
 
-    Output::putBytes(builder.string, builder.stringLength);
+    UartOutput::putBytes(builder.string, builder.stringLength);
 }

@@ -5,7 +5,7 @@
 #include <./drivers/mailbox/ros_mailbox.h>
 #include <./drivers/gpio/ros_gpio.h>
 #include <./drivers/clock/ros_clock.h>
-#include <./system/logger/ros_uart_logger.h>
+#include <./utils/logger/ros_uart_logger.h>
 
 namespace ROS {
     class Power {

@@ -3,7 +3,7 @@
 .global _start
 .global get_current_core
 
-.extern kernel_main
+.extern kernel_start
 .extern kernel_loop
 .extern kernel_tasks
 
@@ -44,7 +44,7 @@ first_core:
     ldr x30, = _start
     mov sp, x30
     bl bss_clean
-    bl kernel_main
+    bl kernel_start
 
 loop:
     bl kernel_loop

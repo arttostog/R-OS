@@ -5,7 +5,7 @@
 #include <./drivers/uart/ros_uart.h>
 
 namespace ROS {
-    class Output {
+    class UartOutput {
         public:
             static void putByte(IN byte_t byte);
             static void putBytes(IN const byte_t* bytes, IN uint32_t bytesCount);

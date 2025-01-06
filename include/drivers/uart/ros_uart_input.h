@@ -5,7 +5,7 @@
 #include <./drivers/uart/ros_uart.h>
 
 namespace ROS {
-    class Input {
+    class UartInput {
     public:
         static byte_t getByte();
     };
