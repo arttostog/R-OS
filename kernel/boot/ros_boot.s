@@ -29,21 +29,9 @@ get_current_core:
     and x0, x0, #0xff
     ret
 
-bss_clean:
-    ldr x1, = __bss_start
-    ldr x2, = __bss_size
-bss_clean_loop:
-    cbz x2, bss_clean_loop_end
-    str xzr, [x1], 8
-    sub x2, x2, #1
-    cbnz x2, bss_clean_loop
-bss_clean_loop_end:
-    ret
-
 first_core:
     ldr x30, = _start
     mov sp, x30
-    bl bss_clean
     bl kernel_start
 
 loop:
