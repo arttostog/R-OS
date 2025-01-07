@@ -6,12 +6,13 @@
 namespace ROS {
     class TaskManager {
     public:
-        static const uint32_t CORES_FOR_TASKS = 3;
+        static constexpr uint32_t CORES_FOR_TASKS = 3;
+        static bool coresState[CORES_FOR_TASKS];
         static void (*tasks[CORES_FOR_TASKS]) ();
 
         static void addTask(IN void (*task) ());
     private:
-        static uint32_t tasksIndex;
+        static uint32_t coreIndex;
 
         static void updateTasksIndex();
     };
