@@ -7,6 +7,7 @@
 #include <./drivers/uart/ros_uart_output.h>
 #include <./drivers/uart/ros_uart_input.h>
 #include <./utils/string/ros_string.h>
+#include <./drivers/task-manager/ros_task_manager.h>
 
 namespace ROS {
     class UartConsoleHandler {

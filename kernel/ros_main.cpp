@@ -2,6 +2,7 @@
 #include <./drivers/lfb/ros_lfb.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./os/ros_os_main.h>
+#include <./drivers/task-manager/ros_task_manager.h>
 
 using namespace ROS;
 

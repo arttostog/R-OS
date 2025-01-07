@@ -19,7 +19,7 @@ void UartConsoleHandler::commandHandler() {
     for (int32_t i = 0; i < COMMANDS_COUNT; ++i)
         if (inputLength == commands[i].nameLength)
             if (String::checkIfStringsAreEqual(inputBuffer, commands[i].name, inputLength)) {
-                commands[i].commandFunction();
+                TaskManager::addTask(commands[i].commandFunction);
                 break;
             }
 }
