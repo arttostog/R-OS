@@ -2,8 +2,6 @@
 
 using namespace ROS;
 
-byte_t Input::getByte() {
-    while (Uart::read(Uart::UART0_FR) & (1 << 4))
-        continue;
-    return Uart::read(Uart::UART0_DR);
+byte_t UartInput::getByte() {
+    return Uart::read(Uart::UART0_FR) & (1 << 4) ? 0 : Uart::read(Uart::UART0_DR);
 }

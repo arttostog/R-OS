@@ -1,3 +1,5 @@
+.section ".text"
+
 .global clock_frequency
 clock_frequency:
     mrs x0, cntfrq_el0

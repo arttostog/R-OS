@@ -77,8 +77,8 @@ void Lfb::fillScreen(IN uint32_t color) {
         }
 }
 
-Lfb::Screen Lfb::getScreen() {
-    return screen;
+const Lfb::Screen* Lfb::getScreen() {
+    return &screen;
 }
 
 uint32_t Lfb::convertColor(IN uint32_t color) {

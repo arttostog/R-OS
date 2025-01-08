@@ -4,7 +4,7 @@
 #include <ros_standart.h>
 #include <./drivers/clock/ros_clock.h>
 #include <./drivers/mailbox/ros_mailbox.h>
-#include <./system/logger/ros_uart_logger.h>
+#include <./utils/logger/ros_uart_logger.h>
 #include <./utils/color/ros_color.h>
 
 namespace ROS {
@@ -24,7 +24,7 @@ namespace ROS {
         static void show(IN const Image* imageToShow);
         static void clearScreen();
         static void fillScreen(IN uint32_t color);
-        static Screen getScreen();
+        static const Screen* getScreen();
     private:
         static Screen screen;
         static void* lfb;
