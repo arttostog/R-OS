@@ -15,7 +15,6 @@ namespace ROS {
     private:
         static uint32_t symbolBuffer[Font::FONT_SYMBOL_SIZE];
         static Lfb::Image symbolImage;
-        static Logo logo;
 
         static void handle();
     };
