@@ -1,14 +1,14 @@
 ENTRY(_start)
 
-__stack_length = 0x2000;
+__stack_length = 0x1000;
 __stack_length_quarter = __stack_length / 4;
 
 MEMORY
 {
-    boot : ORIGIN = 0x80000, LENGTH = 0x1000
+    boot : ORIGIN = 0x80000, LENGTH = 0x100
 
-    flash : ORIGIN = 0x10000, LENGTH = 0x10000
-    ram : ORIGIN = 0x20000, LENGTH = 0x5000
+    flash : ORIGIN = 0x10000, LENGTH = 0x8000
+    ram : ORIGIN = 0x20000, LENGTH = 0x1000
     stack : ORIGIN = 0x25000, LENGTH = __stack_length
 }
 

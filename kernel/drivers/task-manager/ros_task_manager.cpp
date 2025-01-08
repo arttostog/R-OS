@@ -20,12 +20,11 @@ extern "C" {
     }
 }
 
-void TaskManager::addTask(IN void (*task) ()) {
+TaskManager::pptr* TaskManager::addTask(IN TaskManager::pptr task) {
     while (true) {
         if (coresState[coreIndex] && tasks[coreIndex] == nullptr) {
             tasks[coreIndex] = task;
-            updateTasksIndex();
-            break;
+            return &tasks[coreIndex];
         }
         updateTasksIndex();
     }
@@ -34,4 +33,9 @@ void TaskManager::addTask(IN void (*task) ()) {
 void TaskManager::updateTasksIndex() {
     if (++coreIndex == CORES_FOR_TASKS)
         coreIndex = 0;
+}
+
+void TaskManager::awaitAddedTask(IN TaskManager::pptr* addedTask) {
+    while (*addedTask != nullptr)
+        continue;
 }

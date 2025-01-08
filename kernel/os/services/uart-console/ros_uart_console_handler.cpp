@@ -2,11 +2,6 @@
 
 using namespace ROS;
 
-const struct UartConsoleHandler::Command UartConsoleHandler::commands[UartConsoleHandler::COMMANDS_COUNT] = {
-    { "hello", 5, UartConsoleHandler::helloCommand },
-    { "shutdown", 8, Power::shutdown }
-};
-
 byte_t UartConsoleHandler::inputBuffer[INPUT_BUFFER_SIZE] = { };
 int32_t UartConsoleHandler::inputLength = 0;
 
@@ -16,12 +11,16 @@ void UartConsoleHandler::init() {
 }
 
 void UartConsoleHandler::commandHandler() {
-    for (int32_t i = 0; i < COMMANDS_COUNT; ++i)
-        if (inputLength == commands[i].nameLength)
-            if (String::checkIfStringsAreEqual(inputBuffer, commands[i].name, inputLength)) {
-                TaskManager::addTask(commands[i].commandFunction);
-                break;
+    for (int32_t i = 0; i < UartConsoleHandlerCommands::COMMANDS_COUNT; ++i) {
+        UartConsoleHandlerCommands::Command command = UartConsoleHandlerCommands::commands[i];
+        if (inputLength == command.nameLength)
+            if (String::checkIfStringsAreEqual(inputBuffer, command.name, inputLength)) {
+                TaskManager::pptr* addedTask = TaskManager::addTask(command.commandFunction);
+                if (command.await)
+                    TaskManager::awaitAddedTask(addedTask);
+                return;
             }
+    }
 }
 
 void UartConsoleHandler::clearInputBuffer() {
@@ -46,8 +45,4 @@ void UartConsoleHandler::handle() {
         inputBuffer[inputLength] = byte;
         ++inputLength;
     }
-}
-
-void UartConsoleHandler::helloCommand() {
-    Logger::log(Logger::INFO, "Hello!");
 }
