@@ -3,7 +3,7 @@
 using namespace ROS;
 
 byte_t UartConsoleHandler::inputBuffer[INPUT_BUFFER_SIZE] = { };
-int32_t UartConsoleHandler::inputLength = 0;
+uint32_t UartConsoleHandler::inputLength = 0;
 
 void UartConsoleHandler::init() {
     Logger::log(Logger::INFO, "Hello from R-OS!");
@@ -11,7 +11,7 @@ void UartConsoleHandler::init() {
 }
 
 void UartConsoleHandler::commandHandler() {
-    for (int32_t i = 0; i < UartConsoleHandlerCommands::COMMANDS_COUNT; ++i) {
+    for (uint32_t i = 0; i < UartConsoleHandlerCommands::COMMANDS_COUNT; ++i) {
         UartConsoleHandlerCommands::Command command = UartConsoleHandlerCommands::commands[i];
         if (inputLength == command.nameLength)
             if (String::checkIfStringsAreEqual(inputBuffer, command.name, inputLength)) {
@@ -24,13 +24,16 @@ void UartConsoleHandler::commandHandler() {
 }
 
 void UartConsoleHandler::clearInputBuffer() {
-    for (int32_t i = 0; i <= inputLength; ++i)
+    for (uint32_t i = 0; i <= inputLength; ++i)
         inputBuffer[i] = '\0';
     inputLength = 0;
 }
 
 void UartConsoleHandler::handle() {
     byte_t byte = UartInput::getByte();
+
+    if (!byte)
+        return;
 
     if (byte == '\r') {
         UartOutput::putByte('\n');

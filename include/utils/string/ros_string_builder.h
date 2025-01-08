@@ -14,9 +14,11 @@ namespace ROS {
 
         StringBuilder();
 
-        void append(IN const char* string);
         void append(IN char symbol);
-        void append(IN const char* string, uint32_t stringLength);
+        void append(IN uint64_t number);
+        void append(IN const char* string);
+        void append(IN const char* string, IN uint32_t stringLength);
+        void clean();
     };
 }
 

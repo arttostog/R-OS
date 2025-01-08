@@ -21,9 +21,11 @@ namespace ROS {
                 ERROR = 'E'
             };
             
-            static void log(IN LogType logType, IN uint64_t number);
             static void log(IN LogType logType, IN const char* string);
             static void log(IN LogType logType, IN const char* string, IN uint32_t stringSize);
+        private:
+            static bool isBusy;
+            static StringBuilder builder;
     };
 };
 

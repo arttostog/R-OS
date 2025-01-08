@@ -3,6 +3,7 @@
 
 #include <./drivers/lfb/ros_lfb.h>
 #include <./os/system/logo/ros_logo.h>
+#include <./os/services/console/ros_console_handler.h>
 #include <./os/services/uart-console/ros_uart_console_handler.h>
 
 namespace ROS {

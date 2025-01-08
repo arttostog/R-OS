@@ -2,29 +2,25 @@
 
 using namespace ROS;
 
-void Logger::log(IN LogType logType, IN uint64_t number) {
-    char buffer[20];
-    String::numberToString(number, buffer, 20, true);
-    log(logType, buffer, 20);
-}
+bool Logger::isBusy = false;
+StringBuilder Logger::builder = StringBuilder();
 
 void Logger::log(IN LogType logType, IN const char* string) {
     log(logType, string, String::getStringSize(string));
 }
 
 void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSize) {
-    StringBuilder builder;
+    while (isBusy)
+        continue;
+    
+    isBusy = true;
 
     builder.append('(');
-    char buffer[20];
-    String::numberToString(Clock::getUptime(), buffer, 20, true);
-    builder.append(buffer, 20);
+    builder.append(Clock::getUptime());
     builder.append(") ", 2);
 
     builder.append("{core-", 6);
-    char coreBuffer[2];
-    String::numberToString(get_current_core(), coreBuffer, 2, true);
-    builder.append(coreBuffer, 2);
+    builder.append(get_current_core());
     builder.append("} ", 2);
 
     builder.append('[');
@@ -35,4 +31,8 @@ void Logger::log(IN LogType logType, IN const char* string, IN uint32_t stringSi
     builder.append('\n');
 
     UartOutput::putBytes(builder.string, builder.stringLength);
+
+    builder.clean();
+
+    isBusy = false;
 }

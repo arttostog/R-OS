@@ -25,3 +25,15 @@ void StringBuilder::append(IN const char* string, IN uint32_t stringLength) {
         this->string[this->stringLength] = string[i];
     }
 }
+
+void StringBuilder::append(IN uint64_t number) {
+    char buffer[20];
+    String::numberToString(number, buffer, 20, true);
+    append(buffer, 20);
+}
+
+void StringBuilder::clean() {
+    for (uint32_t i = 0; i < stringLength; ++i)
+        string[i] = '\0';
+    stringLength = 0;
+}
