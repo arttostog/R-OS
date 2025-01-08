@@ -17,11 +17,11 @@ namespace ROS {
             LOGO_HEIGHT = 32
         };
 
-        Logo(const Lfb::Screen* screen);
-        void showLogo();
-    private:
         uint32_t logoBuffer[Logo::LOGO_WIDTH * Logo::LOGO_HEIGHT];
         Lfb::Image logoImage;
+
+        Logo(const Lfb::Screen* screen);
+        void show();
     };
 }
 

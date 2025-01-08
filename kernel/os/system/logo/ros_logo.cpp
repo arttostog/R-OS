@@ -14,7 +14,7 @@ Logo::Logo(const Lfb::Screen* screen) {
     ImageFromBmp::get(&logoImage, logo_pointer, logoImage.imageWidth * (logoImage.imageHeight - 1), logoImage.imageWidth);
 }
 
-void Logo::showLogo() {
+void Logo::show() {
     Lfb::clearScreen();
     Lfb::show(&logoImage);
 }

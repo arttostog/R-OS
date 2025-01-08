@@ -2,7 +2,7 @@
 
 using namespace ROS;
 
-void Font::getSymbolAsImage(OUT Lfb::Image* image, OUT uint32_t symbolBuffer[FONT_SYMBOL_HEIGHT * FONT_SYMBOL_WIDTH], IN char symbol) {
+void Font::getSymbolAsImage(OUT Lfb::Image* image, OUT uint32_t symbolBuffer[FONT_SYMBOL_SIZE], IN char symbol) {
     image->imageWidth = FONT_SYMBOL_WIDTH;
     image->imageHeight = FONT_SYMBOL_HEIGHT;
     

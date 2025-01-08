@@ -32,10 +32,10 @@ void UartConsoleHandlerCommands::helloCommand() {
 }
 
 void UartConsoleHandlerCommands::coresInWorkCommand() {
-    builder.append("Active cores:", 20);
-    builder.append("\n(This OS supports only ");
+    builder.append("Active cores:", 13);
+    builder.append("\n(This OS supports only ", 24);
     builder.append((uint64_t) TaskManager::CORES_FOR_TASKS + 1);
-    builder.append(" cores!)");
+    builder.append(" cores!)", 8);
     builder.append("\nCore-0", 7);
 
     for (uint32_t i = 0; i < TaskManager::CORES_FOR_TASKS; ++i)

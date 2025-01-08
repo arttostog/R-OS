@@ -8,7 +8,7 @@ MEMORY
     boot : ORIGIN = 0x80000, LENGTH = 0x100
 
     flash : ORIGIN = 0x10000, LENGTH = 0x9000
-    ram : ORIGIN = 0x20000, LENGTH = 0x1000
+    ram : ORIGIN = 0x20000, LENGTH = 0x2000
     stack : ORIGIN = 0x25000, LENGTH = __stack_length
 }
 
