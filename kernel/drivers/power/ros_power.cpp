@@ -1,4 +1,4 @@
-#include <./drivers/power/ros_power.h>
+#include <./kernel/drivers/power/ros_power.h>
 
 using namespace ROS;
 

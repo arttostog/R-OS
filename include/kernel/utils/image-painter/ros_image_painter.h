@@ -2,7 +2,7 @@
 #define ROS_IMAGE_PAINTER_H
 
 #include <ros_standart.h>
-#include <./drivers/lfb/ros_lfb.h>
+#include <./kernel/drivers/lfb/ros_lfb.h>
 
 namespace ROS {
     class Lfb;

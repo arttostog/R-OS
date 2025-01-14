@@ -1,4 +1,4 @@
-#include <./drivers/mailbox/ros_mailbox.h>
+#include <./kernel/drivers/mailbox/ros_mailbox.h>
 
 using namespace ROS;
 

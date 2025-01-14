@@ -2,7 +2,7 @@
 #define ROS_UART_INPUT_H
 
 #include <ros_standart.h>
-#include <./drivers/uart/ros_uart.h>
+#include <./kernel/drivers/uart/ros_uart.h>
 
 namespace ROS {
     class UartInput {

@@ -2,10 +2,10 @@
 #define ROS_LFB_H
 
 #include <ros_standart.h>
-#include <./drivers/clock/ros_clock.h>
-#include <./drivers/mailbox/ros_mailbox.h>
-#include <./utils/logger/ros_uart_logger.h>
-#include <./utils/color/ros_color.h>
+#include <./kernel/drivers/clock/ros_clock.h>
+#include <./kernel/drivers/mailbox/ros_mailbox.h>
+#include <./kernel/utils/logger/ros_uart_logger.h>
+#include <./kernel/utils/color/ros_color.h>
 
 namespace ROS {
     

@@ -2,10 +2,10 @@
 #define ROS_POWER_H
 
 #include <ros_standart.h>
-#include <./drivers/mailbox/ros_mailbox.h>
-#include <./drivers/gpio/ros_gpio.h>
-#include <./drivers/clock/ros_clock.h>
-#include <./utils/logger/ros_uart_logger.h>
+#include <./kernel/drivers/mailbox/ros_mailbox.h>
+#include <./kernel/drivers/gpio/ros_gpio.h>
+#include <./kernel/drivers/clock/ros_clock.h>
+#include <./kernel/utils/logger/ros_uart_logger.h>
 
 namespace ROS {
     class Power {

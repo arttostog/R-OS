@@ -3,10 +3,10 @@
 
 #include <ros_standart.h>
 #include <./os/services/uart-console/commands/ros_uart_console_handler_commands.h>
-#include <./drivers/uart/ros_uart_output.h>
-#include <./drivers/uart/ros_uart_input.h>
-#include <./utils/string/ros_string.h>
-#include <./drivers/task-manager/ros_task_manager.h>
+#include <./kernel/drivers/uart/ros_uart_output.h>
+#include <./kernel/drivers/uart/ros_uart_input.h>
+#include <./kernel/utils/string/ros_string.h>
+#include <./kernel/drivers/task-manager/ros_task_manager.h>
 
 namespace ROS {
     class UartConsoleHandler {

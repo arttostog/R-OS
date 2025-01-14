@@ -1,4 +1,4 @@
-#include <./utils/image-from-bmp/ros_image_from_bmp.h>
+#include <./kernel/utils/image-from-bmp/ros_image_from_bmp.h>
 
 using namespace ROS;
 
