@@ -2,8 +2,8 @@
 #define ROS_FONT_H
 
 #include <ros_standart.h>
-#include <./drivers/lfb/ros_lfb.h>
-#include <./utils/image-from-bmp/ros_image_from_bmp.h>
+#include <./kernel/drivers/lfb/ros_lfb.h>
+#include <./kernel/utils/image-from-bmp/ros_image_from_bmp.h>
 
 namespace ROS {
     class Lfb;

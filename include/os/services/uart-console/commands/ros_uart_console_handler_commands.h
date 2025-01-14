@@ -2,12 +2,12 @@
 #define ROS_UART_CONSOLE_HANDLER_COMMANDS_H
 
 #include <ros_standart.h>
-#include <./utils/logger/ros_uart_logger.h>
-#include <./drivers/clock/ros_clock.h>
-#include <./drivers/power/ros_power.h>
-#include <./drivers/task-manager/ros_task_manager.h>
-#include <./utils/string/ros_string_builder.h>
-#include <./utils/string/ros_string.h>
+#include <./kernel/utils/logger/ros_uart_logger.h>
+#include <./kernel/drivers/clock/ros_clock.h>
+#include <./kernel/drivers/power/ros_power.h>
+#include <./kernel/drivers/task-manager/ros_task_manager.h>
+#include <./kernel/utils/string/ros_string_builder.h>
+#include <./kernel/utils/string/ros_string.h>
 
 namespace ROS {
     class UartConsoleHandlerCommands {

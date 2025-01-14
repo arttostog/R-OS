@@ -2,7 +2,7 @@
 #define ROS_MAILBOX_H
 
 #include <ros_standart.h>
-#include <./drivers/gpio/ros_gpio.h>
+#include <./kernel/drivers/gpio/ros_gpio.h>
 
 namespace ROS {
     class MailBox {

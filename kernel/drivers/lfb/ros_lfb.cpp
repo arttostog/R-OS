@@ -1,4 +1,4 @@
-#include <./drivers/lfb/ros_lfb.h>
+#include <./kernel/drivers/lfb/ros_lfb.h>
 
 using namespace ROS;
 

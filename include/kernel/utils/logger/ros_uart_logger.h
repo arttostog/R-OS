@@ -2,11 +2,11 @@
 #define ROS_UART_LOGGER_H
 
 #include <ros_standart.h>
-#include <./drivers/uart/ros_uart_output.h>
-#include <./utils/string/ros_string.h>
-#include <./utils/string/ros_string_builder.h>
-#include <./drivers/clock/ros_clock.h>
-#include <./boot/ros_boot.h>
+#include <./kernel/drivers/uart/ros_uart_output.h>
+#include <./kernel/utils/string/ros_string.h>
+#include <./kernel/utils/string/ros_string_builder.h>
+#include <./kernel/drivers/clock/ros_clock.h>
+#include <./kernel/boot/ros_boot.h>
 
 namespace ROS {
     class Clock;

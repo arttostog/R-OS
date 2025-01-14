@@ -1,10 +1,12 @@
-#include <./drivers/uart/ros_uart.h>
-#include <./drivers/lfb/ros_lfb.h>
-#include <./drivers/clock/ros_clock.h>
-#include <./os/ros_os_main.h>
-#include <./drivers/task-manager/ros_task_manager.h>
+#include <./kernel/drivers/uart/ros_uart.h>
+#include <./kernel/drivers/lfb/ros_lfb.h>
+#include <./kernel/drivers/clock/ros_clock.h>
+#include <./kernel/drivers/task-manager/ros_task_manager.h>
 
 using namespace ROS;
+
+extern void os_start();
+extern void os_loop();
 
 extern "C" {
     void kernel_start() {
@@ -12,10 +14,10 @@ extern "C" {
         Uart::init();
         Lfb::init();
 
-        OsMain::start();
+        os_start();
     }
 
     void kernel_loop() {
-        OsMain::loop();
+        os_loop();
     }
 }

@@ -20,10 +20,7 @@ _start:
     cbz x0, first_core
 
     and x1, x0, #3
-    cbz x1, halt
-    mov x1, #0
-
-    b other_cores
+    cbnz x1, other_cores
 
 halt:
     wfi
