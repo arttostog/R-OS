@@ -1,6 +1,5 @@
 .section ".text.boot"
 
-.global _start
 .global get_current_core
 
 .extern kernel_start
@@ -13,10 +12,10 @@ get_current_core:
     ret
 
 _start:
-    bl get_current_core
-    
     ldr x30, = __stack_bottom
 
+    bl get_current_core
+    
     cbz x0, first_core
 
     and x1, x0, #3
