@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./data/logo/logo.bmp" alt="R-OS" width="64" height="64">
+
 # R-OS
 
 ## О проэкте
