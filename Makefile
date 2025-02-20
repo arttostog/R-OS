@@ -14,11 +14,11 @@ rwildcard = $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(
 OUTPUT = $(BUILD_DIRECTORY)R-OS.elf
 
 QEMU = qemu-system-aarch64
-QEMU_FLAGS = -machine raspi3b -cpu cortex-a57 -m 1G -kernel $(OUTPUT) -serial stdio
+QEMU_FLAGS = -machine raspi3b -m 1G -kernel $(OUTPUT) -serial stdio
 
 $(OUTPUT) :
 	$(CREATE_DIRS)
-	$(G++) $(G++_FLAGS) $(call rwildcard,.,*.cpp *.s) -o $(OUTPUT)
+	$(G++) $(G++_FLAGS) $(call rwildcard,.,*.s *.cpp) -o $(OUTPUT)
 
 run:
 	$(QEMU) $(QEMU_FLAGS)

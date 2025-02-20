@@ -1,7 +1,5 @@
-#include <./kernel/drivers/lfb/ros_lfb.h>
-#include <./os/services/console/ros_console_handler.h>
-#include <./os/services/uart-console/ros_uart_console_handler.h>
-#include <./kernel/drivers/task-manager/ros_task_manager.h>
+#include "./services/ros_console_handler.h"
+#include "./services/ros_uart_console_handler.h"
 
 using namespace ROS;
 
