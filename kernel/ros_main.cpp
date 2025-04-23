@@ -1,9 +1,9 @@
-#include <./kernel/drivers/uart/ros_uart.h>
-#include <./kernel/drivers/lfb/ros_lfb.h>
-#include <./kernel/drivers/clock/ros_clock.h>
-#include <./kernel/drivers/task-manager/ros_task_manager.h>
+#include <./drivers/ros_uart.h>
+#include <./drivers/ros_lfb.h>
+#include <./drivers/ros_clock.h>
+#include <./drivers/ros_task_manager.h>
 
-using namespace ROS;
+using ROS::Clock, ROS::Uart, ROS::Lfb;
 
 extern void os_start();
 extern void os_loop();
