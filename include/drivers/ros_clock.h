@@ -6,7 +6,7 @@
 
 namespace ROS {
     extern "C" {
-        uint32_t clock_frequency();
+        uint64_t clock_frequency();
         uint64_t clock_uptime();
     }
 
@@ -16,10 +16,11 @@ namespace ROS {
                 NANOSECONDS_IN_SECOND = 1000000000;
 
             static void init();
-            static uint32_t getFrequency();
-            static uint64_t getUptime();
-            static void delay(IN float64_t seconds);
             
+            static uint64_t getFrequency();
+            static uint64_t getUptime();
+
+            static void delay(IN float64_t seconds);
             static void delayByCycles(IN uint64_t cycles);
         private:
             static uint64_t clockFrequency;

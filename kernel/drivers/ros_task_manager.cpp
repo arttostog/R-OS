@@ -1,6 +1,6 @@
 #include <./drivers/ros_task_manager.h>
 
-using namespace ROS;
+using ROS::TaskManager;
 
 bool TaskManager::coresState[TaskManager::CORES_FOR_TASKS] = { };
 void (*TaskManager::tasks[TaskManager::CORES_FOR_TASKS]) () = { };

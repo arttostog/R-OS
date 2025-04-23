@@ -1,6 +1,6 @@
 #include <./utils/ros_uart_logger.h>
 
-using namespace ROS;
+using ROS::Logger, ROS::Queue, ROS::StringBuilder, ROS::UartOutput;
 
 bool Logger::isBusy = false;
 StringBuilder Logger::builder = StringBuilder();

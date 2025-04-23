@@ -1,6 +1,6 @@
 #include <./utils/ros_string_builder.h>
 
-using namespace ROS;
+using ROS::StringBuilder, ROS::String;
 
 StringBuilder::StringBuilder() {
     stringLength = 0;

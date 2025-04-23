@@ -1,6 +1,6 @@
 #include <./drivers/ros_power.h>
 
-using namespace ROS;
+using ROS::Power, ROS::Clock, ROS::Logger, ROS::MailBox;
 
 void Power::shutdown() {
     Logger::log(Logger::INFO, "Shutdowning...");

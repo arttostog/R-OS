@@ -3,7 +3,7 @@
 #include <./drivers/ros_clock.h>
 #include <./drivers/ros_task_manager.h>
 
-using namespace ROS;
+using ROS::Clock, ROS::Uart, ROS::Lfb;
 
 extern void os_start();
 extern void os_loop();

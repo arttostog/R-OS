@@ -3,6 +3,7 @@
 .global _start
 
 .extern get_current_core
+
 .extern kernel_start
 .extern kernel_loop
 .extern kernel_tasks
@@ -32,7 +33,7 @@ loop:
     b loop
 
 other_cores:
-    ldr x1, = __stack_length_quarter
+    ldr x1, = __stack_size_quarter
     madd x30, x0, x1, x30
     mov x1, #0
 

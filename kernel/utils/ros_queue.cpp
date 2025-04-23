@@ -1,6 +1,6 @@
 #include <./utils/ros_queue.h>
 
-using namespace ROS;
+using ROS::Queue, ROS::Clock;
 
 Queue::Queue() {
     this->queueLength = 0;

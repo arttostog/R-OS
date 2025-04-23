@@ -1,6 +1,6 @@
 #include <./utils/ros_image_from_bmp.h>
 
-using namespace ROS;
+using ROS::ImageFromBmp, ROS::Lfb;
 
 void ImageFromBmp::get(OUT Lfb::Image* image, IN const void* bmp, IN uint32_t bmpStartIndex, IN uint32_t newLineMargin) {
     uint32_t* bmpPixels = (uint32_t*) (((uint64_t) bmp) + 0x8A);

@@ -1,6 +1,6 @@
 #include "ros_console_handler.h"
 
-using namespace ROS;
+using ROS_OS::ConsoleHandler, ROS::Lfb, ROS::TaskManager, ROS::Clock;
 
 uint32_t ConsoleHandler::symbolBuffer[Font::FONT_SYMBOL_SIZE];
 Lfb::Image ConsoleHandler::symbolImage = { };

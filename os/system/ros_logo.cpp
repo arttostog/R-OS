@@ -1,6 +1,6 @@
 #include "ros_logo.h"
 
-using namespace ROS;
+using ROS_OS::Logo, ROS::Lfb, ROS::ImageFromBmp;
 
 Logo::Logo(const Lfb::Screen* screen) {
     logoImage = {

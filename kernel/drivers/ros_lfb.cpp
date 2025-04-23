@@ -1,6 +1,6 @@
 #include <./drivers/ros_lfb.h>
 
-using namespace ROS;
+using ROS::Lfb, ROS::MailBox, ROS::Logger;
 
 Lfb::Screen Lfb::screen = { };
 void* Lfb::lfb = nullptr;

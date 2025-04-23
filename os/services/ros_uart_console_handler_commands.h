@@ -1,5 +1,5 @@
-#ifndef ROS_UART_CONSOLE_HANDLER_COMMANDS_H
-#define ROS_UART_CONSOLE_HANDLER_COMMANDS_H
+#ifndef ROS_OS_UART_CONSOLE_HANDLER_COMMANDS_H
+#define ROS_OS_UART_CONSOLE_HANDLER_COMMANDS_H
 
 #include <ros_standart.h>
 #include <./utils/ros_uart_logger.h>
@@ -9,7 +9,7 @@
 #include <./utils/ros_string_builder.h>
 #include <./utils/ros_string.h>
 
-namespace ROS {
+namespace ROS_OS {
     class UartConsoleHandlerCommands {
     public:
         struct Command {
@@ -24,7 +24,7 @@ namespace ROS {
         static constexpr uint32_t COMMANDS_COUNT = 4;
         static const struct Command commands[COMMANDS_COUNT];
     private:
-        static StringBuilder builder;
+        static ROS::StringBuilder builder;
 
         static void helpCommand();
         static void helloCommand();

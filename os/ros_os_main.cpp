@@ -1,7 +1,7 @@
 #include "./services/ros_console_handler.h"
 #include "./services/ros_uart_console_handler.h"
 
-using namespace ROS;
+using ROS_OS::ConsoleHandler, ROS_OS::UartConsoleHandler;
 
 void os_start() {
     ConsoleHandler::init();

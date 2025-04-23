@@ -1,6 +1,6 @@
 #include "ros_uart_console_handler_commands.h"
 
-using namespace ROS;
+using ROS_OS::UartConsoleHandlerCommands, ROS::StringBuilder, ROS::Power, ROS::Logger, ROS::TaskManager;
 
 StringBuilder UartConsoleHandlerCommands::builder = StringBuilder();
 

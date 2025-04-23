@@ -1,6 +1,6 @@
 #include <./drivers/ros_uart.h>
 
-using namespace ROS;
+using ROS::MailBox, ROS::Uart, ROS::Gpio, ROS::Logger;
 
 void Uart::init() {
     volatile uint32_t* uart0Cr = ((volatile uint32_t*) UART0_CR),

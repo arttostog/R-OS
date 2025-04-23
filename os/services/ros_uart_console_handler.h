@@ -1,5 +1,5 @@
-#ifndef ROS_UART_CONSOLE_HANDLER_H
-#define ROS_UART_CONSOLE_HANDLER_H
+#ifndef ROS_OS_UART_CONSOLE_HANDLER_H
+#define ROS_OS_UART_CONSOLE_HANDLER_H
 
 #include <ros_standart.h>
 #include <./drivers/ros_uart_output.h>
@@ -8,7 +8,7 @@
 #include <./drivers/ros_task_manager.h>
 #include "ros_uart_console_handler_commands.h"
 
-namespace ROS {
+namespace ROS_OS {
     class UartConsoleHandler {
     public:
         static void init();

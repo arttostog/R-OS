@@ -1,6 +1,6 @@
 #include <./drivers/ros_clock.h>
 
-using namespace ROS;
+using ROS::Clock;
 
 uint64_t Clock::clockFrequency = 0;
 
@@ -11,7 +11,7 @@ void Clock::init() {
         Logger::log(Logger::ERROR, "Readed invalid clock frequency!");
 }
 
-uint32_t Clock::getFrequency() {
+uint64_t Clock::getFrequency() {
     return clockFrequency;
 }
 

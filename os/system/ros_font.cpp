@@ -1,6 +1,6 @@
 #include "ros_font.h"
 
-using namespace ROS;
+using ROS_OS::Font, ROS::Lfb, ROS::ImageFromBmp;
 
 void Font::getSymbolAsImage(OUT Lfb::Image* image, OUT uint32_t symbolBuffer[FONT_SYMBOL_SIZE], IN char symbol) {
     image->imageWidth = FONT_SYMBOL_WIDTH;

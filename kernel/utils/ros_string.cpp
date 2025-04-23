@@ -1,6 +1,6 @@
 #include <./utils/ros_string.h>
 
-using namespace ROS;
+using ROS::String;
 
 bool String::checkIfStringsAreEqual(const byte_t* firstString, const byte_t* secondString, int32_t stringsSize) {
     for (int32_t i = 0; i < stringsSize; ++i)

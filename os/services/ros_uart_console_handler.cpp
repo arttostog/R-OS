@@ -1,6 +1,6 @@
 #include "ros_uart_console_handler.h"
 
-using namespace ROS;
+using ROS_OS::UartConsoleHandler, ROS::Logger, ROS::UartOutput, ROS::String, ROS::TaskManager, ROS::UartInput;
 
 byte_t UartConsoleHandler::inputBuffer[INPUT_BUFFER_SIZE] = { };
 uint32_t UartConsoleHandler::inputLength = 0;

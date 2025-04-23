@@ -1,3 +1,5 @@
+.section ".text"
+
 .global get_current_core
 
 get_current_core:

@@ -1,13 +1,11 @@
-#ifndef ROS_LOGO_H
-#define ROS_LOGO_H
+#ifndef ROS_OS_LOGO_H
+#define ROS_OS_LOGO_H
 
 #include <ros_standart.h>
 #include <./drivers/ros_lfb.h>
 #include <./utils/ros_image_from_bmp.h>
 
-namespace ROS {
-    class Lfb;
-    
+namespace ROS_OS {
     extern "C" const byte_t logo_pointer[];
 
     class Logo {
@@ -18,9 +16,9 @@ namespace ROS {
         };
 
         uint32_t logoBuffer[Logo::LOGO_WIDTH * Logo::LOGO_HEIGHT];
-        Lfb::Image logoImage;
+        ROS::Lfb::Image logoImage;
 
-        Logo(const Lfb::Screen* screen);
+        Logo(const ROS::Lfb::Screen *screen);
         void show();
     };
 }

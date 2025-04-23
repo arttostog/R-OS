@@ -1,6 +1,6 @@
 #include <./drivers/ros_uart_output.h>
 
-using namespace ROS;
+using ROS::UartOutput, ROS::Queue, ROS::Uart;
 
 Queue UartOutput::queue = Queue();
 

@@ -1,7 +1,7 @@
 ENTRY(_start)
 
-__stack_length = 0x2000;
-__stack_length_quarter = __stack_length / 4;
+__stack_size = 0x2000;
+__stack_size_quarter = __stack_size / 4;
 
 MEMORY
 {
@@ -11,7 +11,7 @@ MEMORY
     data : ORIGIN = 0x20000, LENGTH = 0x10000
     bss : ORIGIN = 0x30000, LENGTH = 0x2000
 
-    stack : ORIGIN = 0x32000, LENGTH = __stack_length
+    stack : ORIGIN = 0x32000, LENGTH = __stack_size
 }
 
 SECTIONS
@@ -23,6 +23,6 @@ SECTIONS
 
     .stack : {
         __stack_bottom = .;
-        . += __stack_length;
+        . += __stack_size;
     } > stack
 }

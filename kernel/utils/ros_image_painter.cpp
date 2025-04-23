@@ -1,6 +1,6 @@
 #include <./utils/ros_image_painter.h>
 
-using namespace ROS;
+using ROS::ImagePainter, ROS::Lfb;
 
 void ImagePainter::drawPixel(OUT Lfb::Image* image, IN uint32_t pixelPosition, IN uint32_t color) {
     if (pixelPosition >= image->imageWidth * image->imageHeight)

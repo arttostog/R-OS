@@ -1,6 +1,6 @@
 #include <./drivers/ros_mailbox.h>
 
-using namespace ROS;
+using ROS::MailBox;
 
 volatile uint32_t MailBox::mailbox[36] = { };
 
